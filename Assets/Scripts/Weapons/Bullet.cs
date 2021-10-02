@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -29,5 +27,12 @@ public class Bullet : MonoBehaviour
     private void LifeTimeEnded()
     {
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        damageable?.ApplyDamage(_damage, this);
+        LifeTimeEnded();
     }
 }

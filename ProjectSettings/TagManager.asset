@@ -15,9 +15,9 @@ TagManager:
   - 
   - Terrain
   - Player
-  - 
-  - 
-  - 
+  - PlayerBullet
+  - EnemyBullet
+  - Enemy
   - 
   - 
   - 

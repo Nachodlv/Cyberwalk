@@ -23,6 +23,7 @@ public class Shooter : MonoBehaviour
     public float BulletSpeed { get; set; }
     public float BulletDamage { get; set; }
     public float FireRate { get; set; }
+    public Bullet BulletPrefab => bulletPrefab;
 
     private void Awake()
     {
