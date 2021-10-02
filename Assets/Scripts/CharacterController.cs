@@ -86,20 +86,6 @@ namespace DefaultNamespace
 			// rotation.z = Mathf.Clamp(rotation.z, minimumRotationAngle, maximumRotationAngle);
 		}
 
-		private void Update()
-		{
-			// Vector3 rotation = transform.rotation.eulerAngles;
-			// rotation.z = Mathf.Clamp(rotation.z, minimumRotationAngle, maximumRotationAngle);
-			// m_Rigidbody2D.rotation = Mathf.Clamp(m_Rigidbody2D.rotation, minimumRotationAngle, maximumRotationAngle);
-		}
-
-		private void LateUpdate()
-		{
-			// Vector3 rotation = transform.rotation.eulerAngles;
-			// rotation.z = Mathf.Clamp(rotation.z, minimumRotationAngle, maximumRotationAngle);
-			// m_Rigidbody2D.rotation = Mathf.Clamp(m_Rigidbody2D.rotation, minimumRotationAngle, maximumRotationAngle);
-		}
-
 		public void Move(float move, float rotation, bool crouch, bool jump)
 		{
 			move *= moveSpeed;
