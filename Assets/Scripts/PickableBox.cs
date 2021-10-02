@@ -36,7 +36,7 @@ public class PickableBox : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D Other)
     {
-        if (Other.gameObject.tag == this.tag /*|| Other.gameObject.tag == "Backpack" */)
+        if (Other.gameObject.tag == this.tag || Other.gameObject.tag == "Backpack")
         {
             SetupJointComponent();
             OnRegisterToPlayer();
