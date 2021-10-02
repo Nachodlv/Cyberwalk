@@ -491,24 +491,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8826726669820546611}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &710932201 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8826726669338068638, guid: f5d7d2ec03bd2e049be51596616960c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 8826726669820546611}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &710932204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710932201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0acb9cb68f644b29488cccfcb91d5e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &773383316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1407,15 +1389,5 @@ PrefabInstance:
       propertyPath: healthUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 196044864}
-    - target: {fileID: 8826726670280089209, guid: f5d7d2ec03bd2e049be51596616960c9,
-        type: 3}
-      propertyPath: maxRotation
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 8826726670280089209, guid: f5d7d2ec03bd2e049be51596616960c9,
-        type: 3}
-      propertyPath: minRotation
-      value: -360
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5d7d2ec03bd2e049be51596616960c9, type: 3}

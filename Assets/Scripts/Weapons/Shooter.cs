@@ -21,6 +21,7 @@ public class Shooter : MonoBehaviour
 
     private Transform _bulletsParent;
     private float _lastBulletFiredTime;
+    private Vector2 _shootLocation;
 
     public float BulletSpeed { get; set; }
     public float BulletDamage { get; set; }
@@ -39,6 +40,7 @@ public class Shooter : MonoBehaviour
 
     public void LookAt(Vector2 location)
     {
+        _shootLocation = location;
         Vector2 difference = (Vector3) location - gunSprite.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         rotationZ = Mathf.Clamp(rotationZ, minRotation, maxRotation);
@@ -53,21 +55,20 @@ public class Shooter : MonoBehaviour
             return;
         }
 
-        Bullet bullet = Instantiate(bulletPrefab, shootingPoint.position, gunSprite.rotation, _bulletsParent);
-        bullet.Initialize(BulletDamage);
-        bullet.Rigidbody2D.AddForce(shootingPoint.right * BulletSpeed);
-        _lastBulletFiredTime = now;
+        Vector2 shootDirection = (_shootLocation - (Vector2) transform.position).normalized;
 
-        // for (int i = 0; i < QuantityOfBullets; i++)
-        // {
-        //     bool even = i % 2 == 0;
-        //     float angle = i * degreesPerBullet * (even ? 1 : -1);
-        //     float angleZ = gunSprite.rotation.eulerAngles.z + angle;
-        //     Bullet bullet = Instantiate(bulletPrefab, shootingPoint.position, gunSprite.rotation, _bulletsParent);
-        //     bullet.Initialize(BulletDamage);
-        //     bullet.Rigidbody2D.AddForce(shootingPoint.right * BulletSpeed);
-        //     _lastBulletFiredTime = now;
-        // }
+        for (int i = 0; i < QuantityOfBullets; i++)
+        {
+            bool even = i % 2 == 0;
+            int index = (int) Mathf.Ceil((float) i / 2);
+            float angle = index * degreesPerBullet * (even ? 1 : -1);
+            Vector3 eulerRotation = new Vector3(0, 0, angle);
+
+            Bullet bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity, _bulletsParent);
+            bullet.Initialize(BulletDamage);
+            bullet.Rigidbody2D.AddForce(Quaternion.Euler(eulerRotation) * shootDirection * BulletSpeed);
+            _lastBulletFiredTime = now;
+        }
     }
 
     private void OnDestroy()
