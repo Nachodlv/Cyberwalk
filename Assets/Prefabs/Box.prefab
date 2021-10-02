@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3498033176926478246}
+  - component: {fileID: 5838552604175477597}
   - component: {fileID: 957433517}
   - component: {fileID: 957433514}
   - component: {fileID: 957433516}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,6 +35,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5838552604175477597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498033176926478245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53bb9aee95a50224e926e1c726db588b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPickedUpSmoothTime: 0.05
+  OnPickedUpMaxSpeed: 500
 --- !u!50 &957433517
 Rigidbody2D:
   serializedVersion: 4
@@ -96,9 +111,9 @@ SpringJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 1.3442588, y: 1.9905367}
   m_AutoConfigureDistance: 0
-  m_Distance: 6.5181417
+  m_Distance: 1
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!1 &4560149443945266693
