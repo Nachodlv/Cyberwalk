@@ -275,7 +275,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  fireRateIncrease: 0.2
+  fireRateIncrease: 0.1
 --- !u!1 &9084281244905495381
 GameObject:
   m_ObjectHideFlags: 0
