@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class PickableBox : MonoBehaviour
     protected float OnPickedUpMaxSpeed = 1.0f;
     protected Vector2 OnPickedUpVelocity = Vector2.zero;
 
+    private List<GameObject> _colliders;
+    private bool insideBackpack;
+
     public bool IsInBackpack()
     {
         // If the have joint component and is connected, then is attached to player (is in backpack).
@@ -25,8 +29,10 @@ public class PickableBox : MonoBehaviour
 
     void Awake()
     {
+        _colliders = new List<GameObject>();
+
         //TODO: Change this for a singleton like getter, anonim namespace?
-        CachedPlayer = GameObject.FindGameObjectWithTag("Player");
+        CachedPlayer = GameMode.Singleton.PlayerCached;
 
         SpringJoint2DComponent = GetComponent<SpringJoint2D>();
         // If the box is not in the backpack at the start of the game, we disable the sprint component
@@ -41,13 +47,41 @@ public class PickableBox : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D Other)
     {
+        if (IsInBackpack())
+        {
+            return;
+        }
+
         bool IsAnActiveBox = Other.gameObject.CompareTag(tag) && Other.gameObject.GetComponent<PickableBox>().IsInBackpack();
         bool IsBackpack = Other.collider.CompareTag("Backpack");
-        
+
         if (IsAnActiveBox || IsBackpack)
         {
+            _colliders.Add(Other.gameObject);
             SetupJointComponent();
             OnRegisterToPlayer();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        bool isBackpack = other.CompareTag("Backpack");
+        if (isBackpack)
+        {
+            insideBackpack = false;
+            if (_colliders.Count == 0)
+            {
+
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        _colliders.Remove(other.gameObject);
+        if (_colliders.Count == 0)
+        {
+
         }
     }
 
@@ -73,7 +107,7 @@ public class PickableBox : MonoBehaviour
             Rigidbody2DComponent.MovePosition(SmootedNewPosition);
         }
     }
-    
+
     virtual protected void OnRegisterToPlayer()
     {
 

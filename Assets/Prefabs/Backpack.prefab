@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9177909979902019460}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9177909981331941122}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,10 +70,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9177909981331941122}
     m_Modifications:
+    - target: {fileID: 292422512862066251, guid: ff24f191ac90eeb44935dc43584b6215,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 335670941683614055, guid: ff24f191ac90eeb44935dc43584b6215,
         type: 3}
       propertyPath: m_Name
       value: FrameHorizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 335670941683614055, guid: ff24f191ac90eeb44935dc43584b6215,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 335670941683614055, guid: ff24f191ac90eeb44935dc43584b6215,
         type: 3}
@@ -197,10 +207,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9177909981331941122}
     m_Modifications:
+    - target: {fileID: 292422512862066251, guid: ff24f191ac90eeb44935dc43584b6215,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 335670941683614055, guid: ff24f191ac90eeb44935dc43584b6215,
         type: 3}
       propertyPath: m_Name
       value: FrameVertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 335670941683614055, guid: ff24f191ac90eeb44935dc43584b6215,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1126080926694955813, guid: ff24f191ac90eeb44935dc43584b6215,
         type: 3}

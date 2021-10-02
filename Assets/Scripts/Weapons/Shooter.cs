@@ -57,6 +57,9 @@ public class Shooter : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(_bulletsParent.gameObject);
+        if (_bulletsParent)
+        {
+            Destroy(_bulletsParent.gameObject);
+        }
     }
 }
