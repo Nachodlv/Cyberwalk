@@ -17,6 +17,11 @@ public class PickableBox : MonoBehaviour
     protected float OnPickedUpMaxSpeed = 1.0f;
     protected Vector2 OnPickedUpVelocity = Vector2.zero;
 
+    public bool IsInBackpack()
+    {
+        // If the have joint component and is connected, then is attached to player (is in backpack).
+        return SpringJoint2DComponent != null && SpringJoint2DComponent.connectedBody != null;
+    }
 
     void Awake()
     {
@@ -36,7 +41,10 @@ public class PickableBox : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D Other)
     {
-        if (Other.gameObject.tag == this.tag || Other.gameObject.tag == "Backpack")
+        bool IsAnActiveBox = Other.gameObject.CompareTag(tag) && Other.gameObject.GetComponent<PickableBox>().IsInBackpack();
+        bool IsBackpack = Other.collider.CompareTag("Backpack");
+        
+        if (IsAnActiveBox || IsBackpack)
         {
             SetupJointComponent();
             OnRegisterToPlayer();
