@@ -1,11 +1,19 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace DefaultNamespace
 {
     public class PlayerInput : MonoBehaviour
     {
         [SerializeField] private CharacterController characterController;
+        [SerializeField] private Shooter playerShooter;
+
+        private Camera _cachedCamera;
+        private void Start()
+        {
+            _cachedCamera = Camera.main;
+        }
 
         private void Update()
         {
@@ -18,6 +26,20 @@ namespace DefaultNamespace
             speed += Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1 : 0;
 
             characterController.Move(speed, speed, false, jump);
+
+            UpdateShooter();
+        }
+
+        private void UpdateShooter()
+        {
+            Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            Vector2 worldPosition = _cachedCamera.ScreenToWorldPoint(screenPosition);
+            playerShooter.LookAt(worldPosition);
+
+            if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
+            {
+                playerShooter.Shoot();
+            }
         }
     }
 }
