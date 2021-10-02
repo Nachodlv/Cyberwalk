@@ -81,6 +81,7 @@ namespace DefaultNamespace
 
 			m_Rigidbody2D.rotation = Mathf.Max(m_Rigidbody2D.rotation, minimumRotationAngle);
 			m_Rigidbody2D.rotation = Mathf.Min(m_Rigidbody2D.rotation, maximumRotationAngle);
+			Debug.Log($"Rotation: {m_Rigidbody2D.rotation}");
 		}
 
 
