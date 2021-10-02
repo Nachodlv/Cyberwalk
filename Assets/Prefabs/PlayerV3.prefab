@@ -57,7 +57,7 @@ MonoBehaviour:
   JumpMaxHeight: 5
   LandingTimeThreshold: 0.5
   WalkingMovementSpeed: 20
-  DebugRays: 1
+  DebugRays: 0
   CharacterControllerComp: {fileID: 0}
   RigidBodyComp: {fileID: 0}
 --- !u!50 &7011616797478238876
