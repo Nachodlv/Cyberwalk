@@ -90,9 +90,9 @@ SpringJoint2D:
   m_GameObject: {fileID: 3498033176926478245}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 0
+  m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: 30
+  m_BreakForce: 300
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}

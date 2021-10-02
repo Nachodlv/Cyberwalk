@@ -1,4 +1,5 @@
-﻿using Unity.Mathematics;
+﻿using System;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -29,6 +30,7 @@ namespace DefaultNamespace
 
 		[SerializeField] private float maximumRotationAngle;
 		[SerializeField] private float minimumRotationAngle;
+		[SerializeField] private float rotationCorrection = 1.0f;
 
 		[SerializeField] private float rotationSpeed = 1.0f;
 
@@ -79,11 +81,24 @@ namespace DefaultNamespace
 				}
 			}
 
-			m_Rigidbody2D.rotation = Mathf.Max(m_Rigidbody2D.rotation, minimumRotationAngle);
-			m_Rigidbody2D.rotation = Mathf.Min(m_Rigidbody2D.rotation, maximumRotationAngle);
-			Debug.Log($"Rotation: {m_Rigidbody2D.rotation}");
+			// m_Rigidbody2D.rotation = Mathf.Clamp(m_Rigidbody2D.rotation, minimumRotationAngle, maximumRotationAngle);
+			// Vector3 rotation = transform.rotation.eulerAngles;
+			// rotation.z = Mathf.Clamp(rotation.z, minimumRotationAngle, maximumRotationAngle);
 		}
 
+		private void Update()
+		{
+			// Vector3 rotation = transform.rotation.eulerAngles;
+			// rotation.z = Mathf.Clamp(rotation.z, minimumRotationAngle, maximumRotationAngle);
+			// m_Rigidbody2D.rotation = Mathf.Clamp(m_Rigidbody2D.rotation, minimumRotationAngle, maximumRotationAngle);
+		}
+
+		private void LateUpdate()
+		{
+			// Vector3 rotation = transform.rotation.eulerAngles;
+			// rotation.z = Mathf.Clamp(rotation.z, minimumRotationAngle, maximumRotationAngle);
+			// m_Rigidbody2D.rotation = Mathf.Clamp(m_Rigidbody2D.rotation, minimumRotationAngle, maximumRotationAngle);
+		}
 
 		public void Move(float move, float rotation, bool crouch, bool jump)
 		{
@@ -133,22 +148,52 @@ namespace DefaultNamespace
 
 				// Move the character by finding the target velocity
 				Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+
 				// And then smoothing it out and applying it to the character
 				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity,
 					m_MovementSmoothing);
 
-				m_Rigidbody2D.angularVelocity = rotationSpeed * rotation * -1;
-			}
+				// If the player should jump...
+				if (m_Grounded && jump)
+				{
+					// Add a vertical force to the player.
+					m_Grounded = false;
+					m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+				}
 
-			// If the player should jump...
-			if (m_Grounded && jump)
-			{
-				// Add a vertical force to the player.
-				m_Grounded = false;
-				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+				float currentRotation = m_Rigidbody2D.rotation;
+				float rotationToApply = rotationSpeed * rotation * -1;
+
+				if (currentRotation > maximumRotationAngle)
+				{
+					if (rotationToApply > 0)
+					{
+						m_Rigidbody2D.angularVelocity = rotationToApply * -1;
+						return;
+					}
+					else if (Math.Abs(rotationToApply) < 0.1f)
+					{
+						m_Rigidbody2D.angularVelocity = -10.0f;
+						return;
+					}
+				}
+				else if (currentRotation < minimumRotationAngle)
+				{
+					if (rotationToApply < 0)
+					{
+						m_Rigidbody2D.angularVelocity = rotationToApply * -1;
+						return;
+					}
+					else if (Math.Abs(rotationToApply) < 0.1f)
+					{
+						m_Rigidbody2D.angularVelocity = 10.0f;
+						return;
+					}
+				}
+
+				m_Rigidbody2D.angularVelocity = rotationToApply;
 			}
 		}
-
 
 		private void Flip()
 		{
