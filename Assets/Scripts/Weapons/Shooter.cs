@@ -54,4 +54,9 @@ public class Shooter : MonoBehaviour
         bullet.Rigidbody2D.AddForce(shootingPoint.right * BulletSpeed);
         _lastBulletFiredTime = now;
     }
+
+    private void OnDestroy()
+    {
+        Destroy(_bulletsParent.gameObject);
+    }
 }

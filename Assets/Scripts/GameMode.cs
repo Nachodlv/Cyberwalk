@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameMode : MonoBehaviour
 {
@@ -20,7 +19,10 @@ public class GameMode : MonoBehaviour
 
     private static GameMode _singleton;
 
+    private float _startingX;
+
     public GameObject PlayerCached { get; private set; }
+    public float MetersWalked => PlayerCached.transform.position.x - _startingX ;
 
     private void Awake()
     {
@@ -36,5 +38,6 @@ public class GameMode : MonoBehaviour
     void Initialize()
     {
         PlayerCached = GameObject.FindGameObjectWithTag("Player");
+        _startingX = PlayerCached.transform.position.x;
     }
 }
