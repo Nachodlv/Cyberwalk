@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Unity.Mathematics;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace DefaultNamespace
@@ -24,6 +26,11 @@ namespace DefaultNamespace
 		[SerializeField] private Collider2D m_CrouchDisableCollider; // A collider that will be disabled when crouching
 
 		[SerializeField] private float moveSpeed = 1.0f;
+
+		[SerializeField] private float maximumRotationAngle;
+		[SerializeField] private float minimumRotationAngle;
+
+		[SerializeField] private float rotationSpeed = 1.0f;
 
 		const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 		private bool m_Grounded; // Whether or not the player is grounded.
@@ -71,10 +78,13 @@ namespace DefaultNamespace
 						OnLandEvent.Invoke();
 				}
 			}
+
+			m_Rigidbody2D.rotation = Mathf.Max(m_Rigidbody2D.rotation, minimumRotationAngle);
+			m_Rigidbody2D.rotation = Mathf.Min(m_Rigidbody2D.rotation, maximumRotationAngle);
 		}
 
 
-		public void Move(float move, bool crouch, bool jump)
+		public void Move(float move, float rotation, bool crouch, bool jump)
 		{
 			move *= moveSpeed;
 			// If crouching, check to see if the character can stand up
@@ -125,6 +135,8 @@ namespace DefaultNamespace
 				// And then smoothing it out and applying it to the character
 				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity,
 					m_MovementSmoothing);
+
+				m_Rigidbody2D.angularVelocity = rotationSpeed * rotation * -1;
 			}
 
 			// If the player should jump...
