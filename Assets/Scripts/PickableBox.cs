@@ -2,30 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PickableBox : MonoBehaviour
 {
+    // Player interaction
+    [SerializeField]
+    protected float OnPickedUpSmoothTime = 1.0f;
+    [SerializeField]
+    protected float OnPickedUpMaxSpeed = 1.0f;
+
+    [SerializeField] private UnityEvent onBoxDestroyedEvent;
+
     // Components and player refence
     protected GameObject CachedPlayer;
     protected SpringJoint2D SpringJoint2DComponent;
     protected Rigidbody2D Rigidbody2DComponent;
-
-    // Player interaction
-    [SerializeField]
-    protected float OnPickedUpSmoothTime = 1.0f;
-
-    [SerializeField]
-    protected float OnPickedUpMaxSpeed = 1.0f;
     protected Vector2 OnPickedUpVelocity = Vector2.zero;
 
     private List<GameObject> _colliders;
-    private bool insideBackpack;
-
-    public bool IsInBackpack()
-    {
-        // If the have joint component and is connected, then is attached to player (is in backpack).
-        return SpringJoint2DComponent != null && SpringJoint2DComponent.connectedBody != null;
-    }
+    private bool insideBackpackTrigger;
+    private bool _destroyed = false;
+    private bool InBackpack { get; set; }
 
     void Awake()
     {
@@ -47,19 +45,29 @@ public class PickableBox : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D Other)
     {
-        if (IsInBackpack())
+        if (InBackpack || _destroyed)
         {
             return;
         }
 
-        bool IsAnActiveBox = Other.gameObject.CompareTag(tag) && Other.gameObject.GetComponent<PickableBox>().IsInBackpack();
+        bool IsAnActiveBox = Other.gameObject.CompareTag(tag) && Other.gameObject.GetComponent<PickableBox>().InBackpack;
         bool IsBackpack = Other.collider.CompareTag("Backpack");
 
         if (IsAnActiveBox || IsBackpack)
         {
             _colliders.Add(Other.gameObject);
+            InBackpack = true;
             SetupJointComponent();
             OnRegisterToPlayer();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        bool isBackpack = other.CompareTag("Backpack");
+        if (isBackpack)
+        {
+            insideBackpackTrigger = true;
         }
     }
 
@@ -68,10 +76,11 @@ public class PickableBox : MonoBehaviour
         bool isBackpack = other.CompareTag("Backpack");
         if (isBackpack)
         {
-            insideBackpack = false;
-            if (_colliders.Count == 0)
+            insideBackpackTrigger = false;
+            if (InBackpack && _colliders.Count == 0 && !_destroyed)
             {
-
+                InBackpack = false;
+                OnUnregisterToPlayer();
             }
         }
     }
@@ -79,14 +88,22 @@ public class PickableBox : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         _colliders.Remove(other.gameObject);
-        if (_colliders.Count == 0)
+        if (_colliders.Count == 0 && InBackpack)
         {
-
+            if (!insideBackpackTrigger && !_destroyed)
+            {
+                OnUnregisterToPlayer();
+            }
         }
     }
 
     virtual protected void SetupJointComponent()
     {
+        if (!SpringJoint2DComponent)
+        {
+            SpringJoint2DComponent = gameObject.AddComponent<SpringJoint2D>();
+        }
+
         // Setting the component (por las dudas).
         SpringJoint2DComponent.connectedBody = CachedPlayer.GetComponent<Rigidbody2D>();
         SpringJoint2DComponent.anchor = Vector2.zero;
@@ -100,7 +117,7 @@ public class PickableBox : MonoBehaviour
     public void OnMouseDrag()
     {
         // Only allow dragging if we are not in the backpack.
-        if (!SpringJoint2DComponent.enabled)
+        if (SpringJoint2DComponent && !SpringJoint2DComponent.enabled)
         {
             Vector2 MouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 SmootedNewPosition = Vector2.SmoothDamp(transform.position, MouseScreenPosition, ref OnPickedUpVelocity, OnPickedUpSmoothTime, OnPickedUpMaxSpeed);
@@ -108,14 +125,28 @@ public class PickableBox : MonoBehaviour
         }
     }
 
-    virtual protected void OnRegisterToPlayer()
+    protected virtual void OnRegisterToPlayer()
     {
-
+        Backpack backpack = CachedPlayer.GetComponentInChildren<Backpack>();
+        backpack.PickableBoxes.Add(this);
     }
 
-    virtual protected void OnUnregisterToPlayer()
+    protected virtual void OnUnregisterToPlayer()
     {
+        Backpack backpack = CachedPlayer.GetComponentInChildren<Backpack>();
+        backpack.PickableBoxes.Remove(this);
+        DestroyBox();
+    }
 
+    public void DestroyBox()
+    {
+        // Destroy the spring
+        if (SpringJoint2DComponent)
+        {
+            SpringJoint2DComponent.enabled = false;
+        }
+        onBoxDestroyedEvent.Invoke();
+        _destroyed = true;
     }
 
 }

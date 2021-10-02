@@ -261,6 +261,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6901419100633781770, guid: 3b3ecf46edd6e444ebf7b851b6cd0284,
         type: 3}
+      propertyPath: baseDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901419100633781770, guid: 3b3ecf46edd6e444ebf7b851b6cd0284,
+        type: 3}
       propertyPath: maxRotation
       value: 360
       objectReference: {fileID: 0}
@@ -272,7 +277,7 @@ PrefabInstance:
     - target: {fileID: 6901419100633781770, guid: 3b3ecf46edd6e444ebf7b851b6cd0284,
         type: 3}
       propertyPath: baseFireRate
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6901419100633781770, guid: 3b3ecf46edd6e444ebf7b851b6cd0284,
         type: 3}

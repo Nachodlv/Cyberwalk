@@ -16,6 +16,8 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float baseSpeed;
     [SerializeField] private float baseDamage;
     [SerializeField] private float baseFireRate;
+    [SerializeField] private int baseQuantityOfBullets;
+    [SerializeField] private float degreesPerBullet = 20.0f;
 
     private Transform _bulletsParent;
     private float _lastBulletFiredTime;
@@ -23,6 +25,7 @@ public class Shooter : MonoBehaviour
     public float BulletSpeed { get; set; }
     public float BulletDamage { get; set; }
     public float FireRate { get; set; }
+    public int QuantityOfBullets { get; set; }
     public Bullet BulletPrefab => bulletPrefab;
 
     private void Awake()
@@ -30,6 +33,7 @@ public class Shooter : MonoBehaviour
         BulletSpeed = baseSpeed;
         BulletDamage = baseDamage;
         FireRate = baseFireRate;
+        QuantityOfBullets = baseQuantityOfBullets;
         _bulletsParent = new GameObject("Bullets").transform;
     }
 
@@ -53,6 +57,17 @@ public class Shooter : MonoBehaviour
         bullet.Initialize(BulletDamage);
         bullet.Rigidbody2D.AddForce(shootingPoint.right * BulletSpeed);
         _lastBulletFiredTime = now;
+
+        // for (int i = 0; i < QuantityOfBullets; i++)
+        // {
+        //     bool even = i % 2 == 0;
+        //     float angle = i * degreesPerBullet * (even ? 1 : -1);
+        //     float angleZ = gunSprite.rotation.eulerAngles.z + angle;
+        //     Bullet bullet = Instantiate(bulletPrefab, shootingPoint.position, gunSprite.rotation, _bulletsParent);
+        //     bullet.Initialize(BulletDamage);
+        //     bullet.Rigidbody2D.AddForce(shootingPoint.right * BulletSpeed);
+        //     _lastBulletFiredTime = now;
+        // }
     }
 
     private void OnDestroy()

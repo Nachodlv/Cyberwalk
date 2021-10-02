@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -7,15 +8,15 @@ public class PlayerStats : MonoBehaviour, IDamageable
 {
     [SerializeField] private int maxHealth = 1;
     [SerializeField] private UnityEvent playerDieEvent;
-    [SerializeField] private UnityEvent<int> healthUpdated;
+    [SerializeField] private UnityEvent<int, int> healthUpdated;
 
     public int CurrentHealth
     {
         get => _currentHealth;
         set
         {
+            healthUpdated.Invoke(_currentHealth, value);
             _currentHealth = value;
-            healthUpdated.Invoke(_currentHealth);
             if (_currentHealth <= 0)
             {
                 PlayerDie();
@@ -23,12 +24,15 @@ public class PlayerStats : MonoBehaviour, IDamageable
         }
     }
 
+    public UnityEvent<int, int> HealthUpdated => healthUpdated;
+    public UnityEvent<float, MonoBehaviour> DamageReceived;
+
     private int _currentHealth;
 
     private void Awake()
     {
         _currentHealth = maxHealth;
-        healthUpdated.Invoke(_currentHealth);
+        healthUpdated.Invoke(0, _currentHealth);
     }
 
     private void PlayerDie()
@@ -40,5 +44,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public void ApplyDamage(float damage, MonoBehaviour instigator)
     {
         CurrentHealth -= (int) damage;
+        DamageReceived.Invoke(damage, instigator);
     }
 }

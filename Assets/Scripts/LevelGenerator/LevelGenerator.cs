@@ -82,6 +82,9 @@ public class LevelGenerator : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(_levelsParent.gameObject);
+        if (_levelsParent)
+        {
+            Destroy(_levelsParent.gameObject);
+        }
     }
 }
