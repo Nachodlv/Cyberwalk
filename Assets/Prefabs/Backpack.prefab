@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 9177909981331941122}
   m_Layer: 0
   m_Name: Backpack
-  m_TagString: Backpack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,6 +74,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FrameHorizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 335670941683614055, guid: ff24f191ac90eeb44935dc43584b6215,
+        type: 3}
+      propertyPath: m_TagString
+      value: Backpack
       objectReference: {fileID: 0}
     - target: {fileID: 1126080926694955813, guid: ff24f191ac90eeb44935dc43584b6215,
         type: 3}
