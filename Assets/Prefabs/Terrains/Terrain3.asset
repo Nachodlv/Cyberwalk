@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Terrain3
   m_EditorClassIdentifier: 
   terrain: {fileID: 678389508429784469, guid: b179295181852f04588c5a3868d929c7, type: 3}
-  offset: {x: -1, y: 0}
-  length: 0
+  offset: {x: 0, y: 0}
+  length: 75.21
