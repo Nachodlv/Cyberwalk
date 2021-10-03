@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: {fileID: 3180764655991237192}
   range: 50
-  totalHealth: 4
+  totalHealth: 3
   enemyDestroyed:
     m_PersistentCalls:
       m_Calls: []
