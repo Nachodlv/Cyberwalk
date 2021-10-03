@@ -266,7 +266,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.3
+  m_fontSize: 28
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.2
+  m_fontSize: 42.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -927,7 +927,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750597997}
-  m_LocalRotation: {x: -1e-45, y: 0.000000030165822, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1e-45, z: 0, w: 1}
   m_LocalPosition: {x: 3.4299998, y: 4.83, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -942,6 +942,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2292039102074868426, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
+        type: 3}
+      propertyPath: baseBulletScale
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3022712058259334557, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1203,7 +1208,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082457845}
-  m_LocalRotation: {x: -1e-45, y: 0.000000030165822, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1e-45, z: 0, w: 1}
   m_LocalPosition: {x: 3.4299998, y: 4.83, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

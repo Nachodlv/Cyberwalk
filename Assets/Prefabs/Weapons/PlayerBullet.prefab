@@ -48,11 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 5
   sprite: {fileID: 7579858646148501489}
-  minDamageColor: {r: 0, g: 1, b: 0.14357352, a: 1}
-  middleDamageColor: {r: 1, g: 1, b: 0, a: 0}
-  maxDamageColor: {r: 1, g: 0, b: 0, a: 1}
-  maxDamage: 4
-  middleDamage: 2.5
+  minDamageColor: {r: 0.2688679, g: 1, b: 0.9896204, a: 1}
+  middleDamageColor: {r: 0.39030087, g: 1, b: 0, a: 1}
+  maxDamageColor: {r: 1, g: 0.94291997, b: 0, a: 1}
+  maxDamage: 3
+  middleDamage: 2
   minDamage: 1
 --- !u!50 &6806584476635667428
 Rigidbody2D:
