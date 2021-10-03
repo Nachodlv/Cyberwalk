@@ -32,7 +32,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 700
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -91,7 +91,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Layer 61
+  - name: scale-box
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -99,9 +99,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
-      width: 474
-      height: 452
+      y: 13
+      width: 466
+      height: 440
     spriteID: c4140116c141fb448b8ac4af7629d91b
     internalID: 0
     spriteBone: []
@@ -113,7 +113,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -181, y: -557}
-  - name: Layer 65
+  - name: box
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -121,9 +121,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 464
+      y: 467
       width: 474
-      height: 452
+      height: 447
     spriteID: 1d6caab92043a694ca114ab4f7c50279
     internalID: 0
     spriteBone: []
@@ -135,17 +135,17 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -1279, y: -97}
-  - name: Layer 57
+  - name: bullet-quantity-box
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 924
+      x: 3
+      y: 932
       width: 474
-      height: 452
+      height: 444
     spriteID: 77ec5c30bca91b54a8fe47c32d36e815
     internalID: 0
     spriteBone: []
@@ -157,7 +157,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -747, y: 358}
-  - name: Layer 53
+  - name: bouncing-box
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -165,9 +165,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 1384
+      y: 1388
       width: 474
-      height: 452
+      height: 448
     spriteID: 648e347610a78054baf43242740bc729
     internalID: 0
     spriteBone: []
@@ -179,17 +179,17 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -1818, y: 1309}
-  - name: Layer 46
+  - name: fire-rate-box
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 486
-      y: 4
-      width: 474
-      height: 452
+      x: 489
+      y: 12
+      width: 470
+      height: 440
     spriteID: 04749b5aaf13363459128c9893f84337
     internalID: 0
     spriteBone: []
@@ -201,7 +201,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -264, y: -73}
-  - name: Layer 29
+  - name: health-box
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -209,9 +209,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 486
-      y: 464
+      y: 466
       width: 474
-      height: 452
+      height: 445
     spriteID: bb53f94a0acb5e24e96146e9aa8ffde7
     internalID: 0
     spriteBone: []
@@ -223,7 +223,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 305, y: 389}
-  - name: Layer 49
+  - name: damage-box
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -231,9 +231,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 486
-      y: 924
+      y: 927
       width: 474
-      height: 452
+      height: 447
     spriteID: ea76c29ce4293c94e8e73d78d3d28baa
     internalID: 0
     spriteBone: []
@@ -245,7 +245,40 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -794, y: 847}
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   mosaicLayers: 1
   documentPivot: {x: 0, y: 0}
   documentAlignment: 7
