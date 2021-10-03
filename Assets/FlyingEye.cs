@@ -19,7 +19,7 @@ public class FlyingEye : MonoBehaviour
     public float BurningDuration = 0.5f;
 
     [Header("Distances")]
-    public float SqrFireDistance = 15.0f;
+    public float FireDistance = 15.0f;
 
     [Header("Movement")]
     public float SearchMovementSpeed = 5.0f;
@@ -28,6 +28,8 @@ public class FlyingEye : MonoBehaviour
 
     private EyeState mCurrentState = EyeState.Searching;
     private EyeState mPreviusState = EyeState.Searching;
+
+    float mAimingElapsedTime = 0.0f;
 
     Vector3 dirToPlayer;
 
@@ -54,7 +56,22 @@ public class FlyingEye : MonoBehaviour
             }
             else if(IsInState(EyeState.Aiming))
             {
+                mAimingElapsedTime += Time.deltaTime;
 
+                if (mAimingElapsedTime >= LockTime)
+                {
+                    SetState(EyeState.Firing);
+                }
+                Debug.DrawRay(transform.position, transform.right * FireDistance * 2.0f, Color.red);
+            }
+        }
+        else if (IsInState(EyeState.Firing))
+        {
+            const int rayThickness = 2;
+            int first = -rayThickness;
+            for (int i = first; i < rayThickness; i++)
+            {
+                Debug.DrawRay(transform.position + (transform.up * i), transform.right * FireDistance * 2.0f, Color.red);
             }
         }
 
@@ -62,7 +79,7 @@ public class FlyingEye : MonoBehaviour
 
     void ProcessSearching()
     {
-        if (dirToPlayer.sqrMagnitude <= SqrFireDistance)
+        if (dirToPlayer.sqrMagnitude <= FireDistance * FireDistance)
         {
             SetState(EyeState.Aiming);
         }
