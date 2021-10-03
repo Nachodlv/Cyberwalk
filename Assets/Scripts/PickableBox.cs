@@ -94,6 +94,7 @@ public class PickableBox : MonoBehaviour
         {
             if (!insideBackpackTrigger && !_destroyed)
             {
+                InBackpack = false;
                 OnUnregisterToPlayer();
             }
         }
@@ -129,6 +130,10 @@ public class PickableBox : MonoBehaviour
 
     protected virtual void OnRegisterToPlayer()
     {
+        if (!InBackpack)
+        {
+            Debug.LogError($"Not in backpack!");
+        }
         Backpack backpack = CachedPlayer.GetComponentInChildren<Backpack>();
         backpack.PickableBoxes.Add(this);
     }

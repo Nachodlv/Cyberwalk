@@ -39,7 +39,6 @@ public class LevelGenerator : MonoBehaviour
         Vector2 playerPosition = GameMode.Singleton.PlayerCached.transform.position;
         float metersWalked = playerPosition.x - _lastSpawnPoint.x;
         float percentageWalked = metersWalked / _currentModularTerrain.length;
-        Debug.Log($"Percentage walked: {percentageWalked}");
         if (percentageWalked > percentageWalkToSpawn)
         {
             SpawnLevel();

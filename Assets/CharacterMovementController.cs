@@ -13,7 +13,7 @@ public class CharacterMovementController : MonoBehaviour
     public float GroundCheckCircleRadius = 1.0f;
     public float GroundCheckDistance = 1.0f;
     public LayerMask GroundLayer;
-    
+
     [Header("Jump Settings")]
     public float JumpForce = 5.0f;
     public float JumpMaxHeight = 5.0f;
@@ -92,7 +92,7 @@ public class CharacterMovementController : MonoBehaviour
         {
             if (!mJumpKeyPressed)
             {
-                mJumpKeyPressed = Input.GetKeyDown(KeyCode.Space);   
+                mJumpKeyPressed = Input.GetKeyDown(KeyCode.Space);
             }
             return;
         }
@@ -139,7 +139,7 @@ public class CharacterMovementController : MonoBehaviour
         {
             return;
         }
-        
+
         if(mHorizontalVelocity != Vector3.zero && mHorizontalVelocity.normalized != mLastMovementDirection)
         {
             mLastMovementDirection = mHorizontalVelocity.normalized;
@@ -175,7 +175,7 @@ public class CharacterMovementController : MonoBehaviour
         mHorizontalVelocity *= mCurrentSpeed * Time.deltaTime;
 
         Vector3 mFinalPosition = transform.position + (mVerticalVelocity + mHorizontalVelocity);
-        
+
         if (mCachedRigidBodyIsGrounded && mVerticalVelocity.y == 0.0f)
         {
             mFinalPosition.y = mGroundHitPosition.y + mBoxColliderComp.bounds.extents.y;
