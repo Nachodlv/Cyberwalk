@@ -16,8 +16,10 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float baseSpeed;
     [SerializeField] private float baseDamage;
     [SerializeField] private float baseFireRate;
-    [SerializeField] private int baseQuantityOfBullets;
+    [SerializeField] private int baseQuantityOfBullets = 1;
     [SerializeField] private float degreesPerBullet = 20.0f;
+    [SerializeField] private int baseBulletBounces = 0;
+    [SerializeField] private float baseBulletScale = 1.0f;
 
     private Transform _bulletsParent;
     private float _lastBulletFiredTime;
@@ -27,6 +29,8 @@ public class Shooter : MonoBehaviour
     public float BulletDamage { get; set; }
     public float FireRate { get; set; }
     public int QuantityOfBullets { get; set; }
+    public int BulletBounces { get; set; }
+    public float BulletScale { get; set; }
     public Bullet BulletPrefab => bulletPrefab;
 
     private void Awake()
@@ -34,7 +38,9 @@ public class Shooter : MonoBehaviour
         BulletSpeed = baseSpeed;
         BulletDamage = baseDamage;
         FireRate = baseFireRate;
+        BulletBounces = baseBulletBounces;
         QuantityOfBullets = baseQuantityOfBullets;
+        BulletScale = baseBulletScale;
         _bulletsParent = new GameObject("Bullets").transform;
     }
 
@@ -65,7 +71,7 @@ public class Shooter : MonoBehaviour
             Vector3 eulerRotation = new Vector3(0, 0, angle);
 
             Bullet bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity, _bulletsParent);
-            bullet.Initialize(BulletDamage);
+            bullet.Initialize(BulletDamage, BulletBounces, BulletScale);
             bullet.Rigidbody2D.AddForce(Quaternion.Euler(eulerRotation) * shootDirection * BulletSpeed);
             _lastBulletFiredTime = now;
         }

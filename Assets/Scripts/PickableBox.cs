@@ -8,9 +8,9 @@ public class PickableBox : MonoBehaviour
 {
     [Header("Player interaction")]
     [SerializeField]
-    protected float OnPickedUpSmoothTime = 1.0f;
+    protected float OnPickedUpSmoothTime = 0.05f;
     [SerializeField]
-    protected float OnPickedUpMaxSpeed = 1.0f;
+    protected float OnPickedUpMaxSpeed = 1000.0f;
 
     [SerializeField] private UnityEvent onBoxDestroyedEvent;
 

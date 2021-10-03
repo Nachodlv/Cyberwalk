@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a66631ed6445b5898126d94b01c288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPickedUpSmoothTime: 0.05
-  OnPickedUpMaxSpeed: 500
+  OnPickedUpSmoothTime: 0.01
+  OnPickedUpMaxSpeed: 1000
   onBoxDestroyedEvent:
     m_PersistentCalls:
       m_Calls:

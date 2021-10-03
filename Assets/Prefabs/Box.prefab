@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 957433517}
   - component: {fileID: 957433514}
   - component: {fileID: 957433516}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Box
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8765892019961896036}
   - component: {fileID: 6876006354236127450}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: DisableSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8822488705493941129}
   - component: {fileID: 5241760787564239342}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BoxSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

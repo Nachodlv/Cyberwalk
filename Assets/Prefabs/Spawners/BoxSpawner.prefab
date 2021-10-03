@@ -52,3 +52,7 @@ MonoBehaviour:
     weight: 1
   - box: {fileID: 3824482240519239721, guid: 1619c90d47a8f2e45a2e3fcdda7f4442, type: 3}
     weight: 1
+  - box: {fileID: 2048829224734918586, guid: fd1e4415e72ce674ea729842aba2c04e, type: 3}
+    weight: 1
+  - box: {fileID: 3838445258478552645, guid: 81c49ca65da57a34c839c14109ea1a1c, type: 3}
+    weight: 1

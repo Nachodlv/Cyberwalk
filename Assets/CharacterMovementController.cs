@@ -31,6 +31,7 @@ public class CharacterMovementController : MonoBehaviour
     bool mCachedRigidBodyIsGrounded = false;
 
     float mCurrentSpeed = 0;
+    float mCurrentMaxHeight;
 
     bool mJumpKeyPressed = false;
     bool mJumpKeyHold = false;
@@ -48,7 +49,7 @@ public class CharacterMovementController : MonoBehaviour
     {
         get
         {
-            return transform.position.y >= JumpMaxHeight;
+            return transform.position.y >= mCurrentMaxHeight;
         }
     }
 
@@ -151,6 +152,8 @@ public class CharacterMovementController : MonoBehaviour
         // Calculate Jump and Combo things.
         if(IsCharacterGrounded)
         {
+            mCurrentMaxHeight = transform.position.y + JumpMaxHeight;
+
             // If is using CharacterController apply a little of force to keep it on the ground so isGrounded = true.
             //mVerticalVelocity.y = UseCharacterController ? -GravityForce * Time.deltaTime : 0.0f;
             mVerticalVelocity.y = 0.0f;
