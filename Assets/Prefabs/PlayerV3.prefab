@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 7011616797478238876}
   - component: {fileID: 6606114204477494243}
   - component: {fileID: 1826683906}
+  - component: {fileID: 1088477824}
   m_Layer: 9
   m_Name: PlayerV3
   m_TagString: Player
@@ -98,9 +99,9 @@ MonoBehaviour:
   MaxFallingSpeed: 0.1
   Deceleration: 0.1
   UseCharacterController: 0
-  GroundCheckCircleRadius: 0.3
-  GroundCheckDistance: 0.8
-  GroundCheckUpperCircleOffset: {x: 0, y: 0}
+  GroundCheckCircleRadius: 0.36
+  GroundCheckDistance: 0.17
+  GroundCheckUpperCircleOffset: {x: 0, y: -0.54}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -206,6 +207,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
   playerShooter: {fileID: 2292039102074868426}
+--- !u!114 &1088477824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444431720361370940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f672f05f50de4f48998cb7d6ecb85372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundingBox: {x: 2.7, y: 2.7}
+  destroyWhenFall: 1
+  restrictX: 1
 --- !u!1 &7301005492281807117
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +372,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6901419100633781770, guid: 3b3ecf46edd6e444ebf7b851b6cd0284,
+        type: 3}
+      propertyPath: baseDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901419100633781770, guid: 3b3ecf46edd6e444ebf7b851b6cd0284,
+        type: 3}
+      propertyPath: maxRotation
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901419100633781770, guid: 3b3ecf46edd6e444ebf7b851b6cd0284,
+        type: 3}
+      propertyPath: minRotation
+      value: -360
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901419101264957020, guid: 3b3ecf46edd6e444ebf7b851b6cd0284,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00325
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b3ecf46edd6e444ebf7b851b6cd0284, type: 3}
 --- !u!4 &2292039102074868425 stripped
@@ -383,6 +419,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3022712058259334557}
     m_Modifications:
+    - target: {fileID: 710932203, guid: 768e4f46b2173104e92417d588a764eb, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5627751
+      objectReference: {fileID: 0}
+    - target: {fileID: 710932203, guid: 768e4f46b2173104e92417d588a764eb, type: 3}
+      propertyPath: m_Size.y
+      value: 4.336455
+      objectReference: {fileID: 0}
+    - target: {fileID: 710932203, guid: 768e4f46b2173104e92417d588a764eb, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.2293293
+      objectReference: {fileID: 0}
+    - target: {fileID: 710932203, guid: 768e4f46b2173104e92417d588a764eb, type: 3}
+      propertyPath: m_Offset.y
+      value: 2.0557163
+      objectReference: {fileID: 0}
     - target: {fileID: 975154747819823637, guid: 768e4f46b2173104e92417d588a764eb,
         type: 3}
       propertyPath: m_LocalScale.x
