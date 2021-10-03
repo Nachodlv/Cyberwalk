@@ -155,7 +155,7 @@ public class CharacterMovementController : MonoBehaviour
 
         if (mLastTickImpulse.magnitude > 0.005f)
         {
-            Debug.Log(mLastTickImpulse.magnitude);
+            //Debug.Log(mLastTickImpulse.magnitude);
             if (mWasImpulsedThisFrame)
             {
                 mWasImpulsedThisFrame = false;
@@ -189,7 +189,6 @@ public class CharacterMovementController : MonoBehaviour
             mCurrentMaxHeight = transform.position.y + JumpMaxHeight;
 
             // If is using CharacterController apply a little of force to keep it on the ground so isGrounded = true.
-            //mVerticalVelocity.y = UseCharacterController ? -GravityForce * Time.deltaTime : 0.0f;
             mVerticalVelocity.y = 0.0f;
 
             if(mJumpKeyPressed)
@@ -204,7 +203,7 @@ public class CharacterMovementController : MonoBehaviour
             if(IsOverMaxHeight || (IsGoingUp && !mJumpKeyHold))
             {
                 //mVerticalVelocity.y = 0;
-                mVerticalVelocity.y -= Deceleration * Time.deltaTime;
+                mVerticalVelocity.y -= GravityForce * Time.deltaTime * Deceleration;
             }
 
             // Gravity
@@ -215,7 +214,7 @@ public class CharacterMovementController : MonoBehaviour
 
         Vector3 mFinalPosition = transform.position + (mVerticalVelocity + mHorizontalVelocity);
 
-        if (CachedRigidBodyIsGrounded && Math.Abs(mVerticalVelocity.y) < 0.001f)
+        if (IsCharacterGrounded && Math.Abs(mVerticalVelocity.y) < 0.001f)
         {
             var positionY = transform.position.y;
             mFinalPosition.y = mGroundHitPosition.y + mBoxColliderComp.bounds.extents.y;
