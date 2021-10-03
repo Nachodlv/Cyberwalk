@@ -86,17 +86,17 @@ public class CharacterMovementController : MonoBehaviour
     {
         // Check inputs
         mHorizontalVelocity.x = Input.GetAxisRaw("Horizontal");
-        mJumpKeyHold = Input.GetKey(KeyCode.Space);
+        mJumpKeyHold = Input.GetButton("Jump");
 
         if (!UseCharacterController)
         {
             if (!mJumpKeyPressed)
             {
-                mJumpKeyPressed = Input.GetKeyDown(KeyCode.Space);
+                mJumpKeyPressed = Input.GetButtonDown("Jump");
             }
             return;
         }
-        mJumpKeyPressed = Input.GetKeyDown(KeyCode.Space);
+        mJumpKeyPressed = Input.GetButtonDown("Jump");
 
         if(mHorizontalVelocity != Vector3.zero && mHorizontalVelocity.normalized != mLastMovementDirection)
         {
