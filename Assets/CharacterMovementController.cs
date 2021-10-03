@@ -148,8 +148,6 @@ public class CharacterMovementController : MonoBehaviour
         // Calculate Speed
         mCurrentSpeed = WalkingMovementSpeed;
 
-        Debug.Log("Is going up: " + IsGoingUp);
-        Debug.Log("Is grounded: " + IsCharacterGrounded);
         // Calculate Jump and Combo things.
         if(IsCharacterGrounded)
         {

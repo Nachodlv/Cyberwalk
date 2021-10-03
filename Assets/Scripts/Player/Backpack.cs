@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Backpack : MonoBehaviour
 {
+    public GameObject FrameHorizontal;
+    public GameObject FrameVertical;
+    public Transform AttachPoint;
     public List<PickableBox> PickableBoxes { get; set; }
 
     private void Awake()

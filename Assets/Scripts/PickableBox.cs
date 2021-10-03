@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class PickableBox : MonoBehaviour
 {
-    // Player interaction
+    [Header("Player interaction")]
     [SerializeField]
     protected float OnPickedUpSmoothTime = 1.0f;
     [SerializeField]
@@ -16,6 +16,7 @@ public class PickableBox : MonoBehaviour
 
     // Components and player refence
     protected GameObject CachedPlayer;
+    protected GameObject CachedBackpack;
     protected SpringJoint2D SpringJoint2DComponent;
     protected Rigidbody2D Rigidbody2DComponent;
     protected Vector2 OnPickedUpVelocity = Vector2.zero;
@@ -31,6 +32,7 @@ public class PickableBox : MonoBehaviour
 
         //TODO: Change this for a singleton like getter, anonim namespace?
         CachedPlayer = GameMode.Singleton.PlayerCached;
+        CachedBackpack = GameMode.Singleton.BackpackCached;
 
         SpringJoint2DComponent = GetComponent<SpringJoint2D>();
         // If the box is not in the backpack at the start of the game, we disable the sprint component
@@ -107,9 +109,9 @@ public class PickableBox : MonoBehaviour
         // Setting the component (por las dudas).
         SpringJoint2DComponent.connectedBody = CachedPlayer.GetComponent<Rigidbody2D>();
         SpringJoint2DComponent.anchor = Vector2.zero;
-        SpringJoint2DComponent.connectedAnchor = Vector2.zero;
+        SpringJoint2DComponent.connectedAnchor = CachedPlayer.transform.InverseTransformPoint(CachedBackpack.GetComponent<Backpack>().AttachPoint.transform.position);
         SpringJoint2DComponent.autoConfigureDistance = false;
-        SpringJoint2DComponent.distance = Vector2.Distance(transform.position, CachedPlayer.transform.position) / 2;
+        SpringJoint2DComponent.distance = Vector2.Distance(transform.position, CachedBackpack.GetComponent<Backpack>().FrameHorizontal.transform.position) * 0.5f;
         SpringJoint2DComponent.enabled = true;
     }
 
@@ -117,7 +119,7 @@ public class PickableBox : MonoBehaviour
     public void OnMouseDrag()
     {
         // Only allow dragging if we are not in the backpack.
-        if (SpringJoint2DComponent && !SpringJoint2DComponent.enabled)
+        if (!_destroyed && !InBackpack)
         {
             Vector2 MouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 SmootedNewPosition = Vector2.SmoothDamp(transform.position, MouseScreenPosition, ref OnPickedUpVelocity, OnPickedUpSmoothTime, OnPickedUpMaxSpeed);
