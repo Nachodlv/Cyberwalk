@@ -17,7 +17,7 @@ public class PickableBox : MonoBehaviour, IDamageable
 
     // Components and player refence
     protected GameObject CachedPlayer;
-    protected GameObject CachedBackpack;
+    protected Backpack CachedBackpack;
     protected SpringJoint2D SpringJoint2DComponent;
     public Rigidbody2D Rigidbody2DComponent { get; protected set; }
     protected Vector2 OnPickedUpVelocity = Vector2.zero;
@@ -114,9 +114,9 @@ public class PickableBox : MonoBehaviour, IDamageable
         // Setting the component (por las dudas).
         SpringJoint2DComponent.connectedBody = CachedPlayer.GetComponent<Rigidbody2D>();
         SpringJoint2DComponent.anchor = Vector2.zero;
-        SpringJoint2DComponent.connectedAnchor = CachedPlayer.transform.InverseTransformPoint(CachedBackpack.GetComponent<Backpack>().AttachPoint.transform.position);
+        SpringJoint2DComponent.connectedAnchor = CachedPlayer.transform.InverseTransformPoint(CachedBackpack.AttachPoint.transform.position);
         SpringJoint2DComponent.autoConfigureDistance = false;
-        SpringJoint2DComponent.distance = Vector2.Distance(transform.position, CachedBackpack.GetComponent<Backpack>().FrameHorizontal.transform.position) * 0.5f;
+        SpringJoint2DComponent.distance = Vector2.Distance(transform.position, CachedBackpack.FrameHorizontal.transform.position) * 0.5f;
         SpringJoint2DComponent.enabled = true;
     }
 

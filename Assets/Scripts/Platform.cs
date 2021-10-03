@@ -13,7 +13,7 @@ public class Platform : MonoBehaviour
    {
       if (Input.GetButtonUp("Vertical"))
       {
-         waitTime = 0.5f;
+         waitTime = 0.2f;
       }
 
       if (Input.GetAxisRaw("Vertical") < 0)
@@ -21,7 +21,7 @@ public class Platform : MonoBehaviour
          if (waitTime <= 0)
          {
             gameObject.layer = ToLayer(avoidPlayerMask);
-            waitTime = 0.5f;
+            waitTime = 0.2f;
          }
          else
          {

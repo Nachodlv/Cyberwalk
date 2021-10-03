@@ -21,6 +21,11 @@ public class ScreenBound : MonoBehaviour
         {
             _damageable = gameObject.GetComponentInChildren<IDamageable>();
         }
+
+        if (_damageable == null)
+        {
+            Debug.Log("Error!");
+        }
     }
 
     private void Update()

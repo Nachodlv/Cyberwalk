@@ -206,7 +206,6 @@ public class CharacterMovementController : MonoBehaviour
             // Gravity
             mVerticalVelocity.y -= GravityForce * Time.deltaTime;
             mVerticalVelocity.y = Mathf.Max(mVerticalVelocity.y, -MaxFallingSpeed);
-            Debug.Log(mVerticalVelocity.y);
         }
         mHorizontalVelocity *= mCurrentSpeed * Time.deltaTime;
 
@@ -214,7 +213,13 @@ public class CharacterMovementController : MonoBehaviour
 
         if (mCachedRigidBodyIsGrounded && Math.Abs(mVerticalVelocity.y) < 0.001f)
         {
+            var positionY = transform.position.y;
             mFinalPosition.y = mGroundHitPosition.y + mBoxColliderComp.bounds.extents.y;
+            float yDifference = mFinalPosition.y - positionY;
+            if (Mathf.Abs(yDifference) > 0.2f)
+            {
+                GameMode.Singleton.BackpackCached.MoveBoxes(new Vector2(0, yDifference));
+            }
         }
         RigidBodyComp.MovePosition(mFinalPosition);
     }

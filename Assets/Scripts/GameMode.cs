@@ -23,7 +23,7 @@ public class GameMode : MonoBehaviour
 
     public GameObject PlayerCached { get; private set; }
     public Transform PlayerTransformCached { get; private set; }
-    public GameObject BackpackCached { get; private set; }
+    public Backpack BackpackCached { get; private set; }
     public float MetersWalked => PlayerCached.transform.position.x - _startingX ;
 
     private void Awake()
@@ -41,7 +41,7 @@ public class GameMode : MonoBehaviour
     {
         PlayerCached = GameObject.FindGameObjectWithTag("Player");
         PlayerTransformCached = PlayerCached.transform;
-        BackpackCached = GameObject.FindGameObjectWithTag("Backpack");
+        BackpackCached = GameObject.FindGameObjectWithTag("Backpack").GetComponent<Backpack>();
         _startingX = PlayerCached.transform.position.x;
     }
 }

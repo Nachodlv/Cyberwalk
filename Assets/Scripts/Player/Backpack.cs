@@ -30,4 +30,13 @@ public class Backpack : MonoBehaviour
             }
         }
     }
+
+    public void MoveBoxes(Vector2 movement)
+    {
+        foreach (PickableBox box in PickableBoxes)
+        {
+            Vector2 position = box.Rigidbody2DComponent.position;
+            box.Rigidbody2DComponent.MovePosition(position + movement);
+        }
+    }
 }
