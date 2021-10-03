@@ -259,7 +259,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.35
+  m_fontSize: 31.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.2
+  m_fontSize: 52.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -755,7 +755,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750597997}
-  m_LocalRotation: {x: -1e-45, y: 0.000000030165822, z: 0, w: 1}
+  m_LocalRotation: {x: -1e-45, y: 0.000000031958887, z: 0, w: 1}
   m_LocalPosition: {x: 13.04, y: 2.7099998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -763,6 +763,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1812042450 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7011616797478238876, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1826683904}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1826683904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -772,13 +778,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 39612874561264571, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
-      propertyPath: JumpForce
-      value: 0.5
+      propertyPath: DebugRays
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 39612874561264571, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
-      propertyPath: JumpMaxHeight
-      value: 10
+      propertyPath: RigidBodyComp
+      value: 
+      objectReference: {fileID: 1812042450}
+    - target: {fileID: 39612874561264571, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
+        type: 3}
+      propertyPath: GroundCheckDistance
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 39612874561264571, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
+        type: 3}
+      propertyPath: GroundCheckCircleRadius
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 39612874561264571, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
+        type: 3}
+      propertyPath: GroundCheckUpperCircleOffset.y
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 2292039101393357468, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
@@ -885,6 +906,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerV3
       objectReference: {fileID: 0}
+    - target: {fileID: 4444431720361370940, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6650925243910162568, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
       propertyPath: m_Size.x
@@ -904,6 +930,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: 2.0557163
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301005492281807117, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a36a2f920ce5cb439bfa1ce2238e95c, type: 3}
@@ -1091,7 +1122,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082457845}
-  m_LocalRotation: {x: -1e-45, y: 0.000000030165822, z: 0, w: 1}
+  m_LocalRotation: {x: -1e-45, y: 0.000000031958887, z: 0, w: 1}
   m_LocalPosition: {x: 13.04, y: 2.7099998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class CharacterMovementController : MonoBehaviour
     [Header("RigidBody settings")]
     public float GroundCheckCircleRadius = 1.0f;
     public float GroundCheckDistance = 1.0f;
+    public Vector2 GroundCheckUpperCircleOffset = Vector2.zero;
     public LayerMask GroundLayer;
 
     [Header("Jump Settings")]
@@ -70,6 +72,8 @@ public class CharacterMovementController : MonoBehaviour
             return UseCharacterController ? CharacterControllerComp.isGrounded : CheckIfRigidBodyIsGrounded();
         }
     }
+
+    public float FeetHeight => mBoxColliderComp.bounds.center.y - mBoxColliderComp.bounds.extents.y;
 
     void Start()
     {
@@ -202,7 +206,7 @@ public class CharacterMovementController : MonoBehaviour
 
         Vector3 mFinalPosition = transform.position + (mVerticalVelocity + mHorizontalVelocity);
 
-        if (mCachedRigidBodyIsGrounded && mVerticalVelocity.y == 0.0f)
+        if (mCachedRigidBodyIsGrounded && Math.Abs(mVerticalVelocity.y) < 0.001f)
         {
             mFinalPosition.y = mGroundHitPosition.y + mBoxColliderComp.bounds.extents.y;
         }
@@ -221,7 +225,8 @@ public class CharacterMovementController : MonoBehaviour
             return false;
         }
 
-        RaycastHit2D hit2D = Physics2D.CircleCast(mBoxColliderComp.bounds.center, GroundCheckCircleRadius, Vector2.down, mBoxColliderComp.bounds.extents.y + GroundCheckDistance - GroundCheckCircleRadius, GroundLayer);
+        RaycastHit2D hit2D = Physics2D.CircleCast(mBoxColliderComp.bounds.center + (Vector3) GroundCheckUpperCircleOffset, GroundCheckCircleRadius, Vector2.down, GroundCheckDistance, GroundLayer);
+        // RaycastHit2D hit2D = Physics2D.CircleCast(mBoxColliderComp.bounds.center, GroundCheckCircleRadius, Vector2.down, mBoxColliderComp.bounds.extents.y + GroundCheckDistance - GroundCheckCircleRadius, GroundLayer);
 
         if (DebugRays)
         {
@@ -245,7 +250,10 @@ public class CharacterMovementController : MonoBehaviour
         {
             if (mBoxColliderComp)
             {
-                Gizmos.DrawWireSphere(mBoxColliderComp.bounds.center + Vector3.down * (GroundCheckCircleRadius + GroundCheckDistance), GroundCheckCircleRadius);
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(mBoxColliderComp.bounds.center + (Vector3) GroundCheckUpperCircleOffset, GroundCheckCircleRadius);
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(mBoxColliderComp.bounds.center + (Vector3) GroundCheckUpperCircleOffset + Vector3.down * GroundCheckDistance, GroundCheckCircleRadius);
             }
         }
     }
@@ -256,7 +264,7 @@ public class CharacterMovementController : MonoBehaviour
         mLastTickImpulse = Force;
         mWasImpulsedThisFrame = true;
     }
-    
+
     // void OnMouseDown()
     // {
     //     float X = 0.75f * Mathf.Sign(Random.Range(-1.0f,1.0f));

@@ -18,13 +18,16 @@ public class PickableBox : MonoBehaviour
     protected GameObject CachedPlayer;
     protected GameObject CachedBackpack;
     protected SpringJoint2D SpringJoint2DComponent;
-    protected Rigidbody2D Rigidbody2DComponent;
+    public Rigidbody2D Rigidbody2DComponent { get; protected set; }
     protected Vector2 OnPickedUpVelocity = Vector2.zero;
 
     private List<GameObject> _colliders;
     private bool insideBackpackTrigger;
     private bool _destroyed = false;
     private bool InBackpack { get; set; }
+
+    private BoxCollider2D _boxCollider2D;
+    public BoxCollider2D BoxCollider2D => _boxCollider2D ? _boxCollider2D : _boxCollider2D = GetComponent<BoxCollider2D>();
 
     void Awake()
     {
