@@ -16,15 +16,10 @@ public class ScreenBound : MonoBehaviour
     private void Awake()
     {
         _cachedCamera = Camera.main;
-        _damageable = gameObject.GetComponent<IDamageable>();
+        _damageable = GetComponent<IDamageable>();
         if (_damageable == null)
         {
-            _damageable = gameObject.GetComponentInChildren<IDamageable>();
-        }
-
-        if (_damageable == null)
-        {
-            Debug.Log("Error!");
+            _damageable = GetComponentInChildren<IDamageable>();
         }
     }
 
@@ -38,9 +33,17 @@ public class ScreenBound : MonoBehaviour
 
         if (destroyWhenFall && position.y < minScreenBounds.y - boundingBox.y)
         {
-            HitInformation hitInformation = new HitInformation();
-            hitInformation.IsAbsoluteDamage = true;
-            _damageable.ApplyDamage(Mathf.Infinity, this, hitInformation);
+            if (_damageable != null)
+            {
+                HitInformation hitInformation = new HitInformation();
+                hitInformation.IsAbsoluteDamage = true;
+                _damageable.ApplyDamage(Mathf.Infinity, this, hitInformation);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            return;
         }
 
         if (restrictX)

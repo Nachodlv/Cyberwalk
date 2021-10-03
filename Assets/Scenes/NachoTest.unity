@@ -175,6 +175,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cb1679e286623fd47a5aa33aa9e82a4d, type: 2}
     - {fileID: 11400000, guid: 4986e72cb8ae9e548a1413e27690fee9, type: 2}
     - {fileID: 11400000, guid: d12184dc24db13944ad75fa73445531d, type: 2}
+    - {fileID: 11400000, guid: b6d3929a85aa366478e9aa05c6fb14d3, type: 2}
     minimumMeters: 1
     percentageWalkToSpawn: 0.5
   startingSpawnPoint: {fileID: 172858974}
@@ -995,7 +996,7 @@ PrefabInstance:
     - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
       propertyPath: maxHealth
-      value: 10000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
