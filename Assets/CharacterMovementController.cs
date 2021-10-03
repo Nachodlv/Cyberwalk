@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterMovementController : MonoBehaviour
 {
@@ -32,7 +33,9 @@ public class CharacterMovementController : MonoBehaviour
     // RigidBody variables:
     bool mIsRigidBodyGrounded = false;
     Vector2 mGroundHitPosition = Vector2.zero;
-    bool mCachedRigidBodyIsGrounded = false;
+    public bool CachedRigidBodyIsGrounded { get; private set; }
+    public UnityEvent OnCharacterJump;
+
     Vector3 mLastTickImpulse = Vector3.zero;
     bool mWasImpulsedThisFrame = false;
 
@@ -211,7 +214,7 @@ public class CharacterMovementController : MonoBehaviour
 
         Vector3 mFinalPosition = transform.position + (mVerticalVelocity + mHorizontalVelocity);
 
-        if (mCachedRigidBodyIsGrounded && Math.Abs(mVerticalVelocity.y) < 0.001f)
+        if (CachedRigidBodyIsGrounded && Math.Abs(mVerticalVelocity.y) < 0.001f)
         {
             var positionY = transform.position.y;
             mFinalPosition.y = mGroundHitPosition.y + mBoxColliderComp.bounds.extents.y;
@@ -227,6 +230,7 @@ public class CharacterMovementController : MonoBehaviour
     void Jump()
     {
         mVerticalVelocity.y = JumpForce;
+        OnCharacterJump.Invoke();
     }
 
     bool CheckIfRigidBodyIsGrounded()
@@ -245,7 +249,7 @@ public class CharacterMovementController : MonoBehaviour
         }
 
         bool isColliding = hit2D.collider != null;
-        mCachedRigidBodyIsGrounded = isColliding;
+        CachedRigidBodyIsGrounded = isColliding;
 
         if (isColliding)
         {
