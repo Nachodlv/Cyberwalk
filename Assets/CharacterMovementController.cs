@@ -6,6 +6,8 @@ using UnityEngine;
 public class CharacterMovementController : MonoBehaviour
 {
     public float GravityForce = 10;
+    public float MaxFallingSpeed = 10.0f;
+    public float Deceleration = 10.0f;
 
     [Header("Physics Settings")]
     public bool UseCharacterController = true;
@@ -164,6 +166,7 @@ public class CharacterMovementController : MonoBehaviour
             {
                 // Gravity
                 mVerticalVelocity.y -= GravityForce * Time.deltaTime;
+                mVerticalVelocity.y = Mathf.Max(mVerticalVelocity.y, -MaxFallingSpeed);
             }
             return;
         }
@@ -196,11 +199,13 @@ public class CharacterMovementController : MonoBehaviour
             // Keep the jump velocity if spacebar is hold.
             if(IsOverMaxHeight || (IsGoingUp && !mJumpKeyHold))
             {
-                mVerticalVelocity.y = 0;
+                //mVerticalVelocity.y = 0;
+                mVerticalVelocity.y -= Deceleration * Time.deltaTime;
             }
 
             // Gravity
             mVerticalVelocity.y -= GravityForce * Time.deltaTime;
+            mVerticalVelocity.y = Mathf.Max(mVerticalVelocity.y, -MaxFallingSpeed);
         }
         mHorizontalVelocity *= mCurrentSpeed * Time.deltaTime;
 
