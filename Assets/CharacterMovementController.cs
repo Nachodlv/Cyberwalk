@@ -44,7 +44,8 @@ public class CharacterMovementController : MonoBehaviour
 
     bool mJumpKeyPressed = false;
     bool mJumpKeyHold = false;
-    Vector3 mHorizontalVelocity = Vector3.forward;
+    [HideInInspector]
+    public Vector3 mHorizontalVelocity = Vector3.forward;
     Vector3 mVerticalVelocity;
     Vector3 mLastMovementDirection;
 

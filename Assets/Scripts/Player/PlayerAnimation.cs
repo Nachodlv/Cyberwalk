@@ -35,7 +35,8 @@ public class PlayerAnimation : MonoBehaviour
         Vector2 currentPosition = controller.RigidBodyComp.position;
         if (_previousPosition != Vector2.zero)
         {
-            Vector2 distance = currentPosition - _previousPosition;
+            //Vector2 distance = currentPosition - _previousPosition;
+            Vector2 distance = controller.mHorizontalVelocity;
             Debug.Log($"Speed: {Mathf.Abs(distance.x)}");
 
             animator.SetFloat(XSpeed, distance.x);

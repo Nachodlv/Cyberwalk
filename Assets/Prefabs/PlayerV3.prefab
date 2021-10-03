@@ -126,8 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GravityForce: 1
-  MaxFallingSpeed: 0.1
-  Deceleration: 0.1
+  MaxFallingSpeed: 0.28
+  Deceleration: 0.8
   UseCharacterController: 0
   GroundCheckCircleRadius: 0.33
   GroundCheckDistance: 1.19
@@ -136,13 +136,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   JumpForce: 0.5
-  JumpMaxHeight: 10
+  JumpMaxHeight: 2.5
   LandingTimeThreshold: 0.8
   WalkingMovementSpeed: 10
   DebugRays: 1
   OnCharacterJump:
     m_PersistentCalls:
       m_Calls: []
+  mHorizontalVelocity: {x: 0, y: 0, z: 1}
   CharacterControllerComp: {fileID: 0}
   RigidBodyComp: {fileID: 7011616797478238876}
 --- !u!114 &3459160477641659884
@@ -288,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 757740325}
   controller: {fileID: 39612874561264571}
-  walkingAnimationSpeed: 10
+  walkingAnimationSpeed: 4
 --- !u!1001 &4613992176305898688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -418,6 +419,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3022712058259334557}
     m_Modifications:
+    - target: {fileID: 4026392215106853799, guid: 768e4f46b2173104e92417d588a764eb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.157
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026392215106853799, guid: 768e4f46b2173104e92417d588a764eb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.167
+      objectReference: {fileID: 0}
     - target: {fileID: 9177909981331941121, guid: 768e4f46b2173104e92417d588a764eb,
         type: 3}
       propertyPath: m_Name
@@ -551,7 +562,7 @@ PrefabInstance:
     - target: {fileID: -5264430577056589469, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.055555373
+      value: -0.055555254
       objectReference: {fileID: 0}
     - target: {fileID: -5264430577056589469, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
@@ -561,17 +572,17 @@ PrefabInstance:
     - target: {fileID: -5264430577056589469, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
       propertyPath: m_Bounds.m_Extent.x
-      value: 0.4411113
+      value: 0.4411114
       objectReference: {fileID: 0}
     - target: {fileID: -4892836108972294424, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: 0.00045996904
+      value: 0.00045999885
       objectReference: {fileID: 0}
     - target: {fileID: -4892836108972294424, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.00019672513
+      value: -0.00019666553
       objectReference: {fileID: 0}
     - target: {fileID: -4892836108972294424, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
@@ -611,7 +622,7 @@ PrefabInstance:
     - target: {fileID: -3736327699017437843, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.020517766
+      value: -0.020517856
       objectReference: {fileID: 0}
     - target: {fileID: -3736327699017437843, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
@@ -620,18 +631,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3736327699017437843, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.3283712
+      objectReference: {fileID: 0}
+    - target: {fileID: -3736327699017437843, guid: bce69fbb810ec4a468c485cab8940d09,
+        type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 0.988889
+      value: 0.98888886
       objectReference: {fileID: 0}
     - target: {fileID: -1168966289889032431, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: 0.11764139
+      value: 0.11764097
       objectReference: {fileID: 0}
     - target: {fileID: -1168966289889032431, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.1544826
+      value: 0.15448263
       objectReference: {fileID: 0}
     - target: {fileID: -1168966289889032431, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
@@ -651,12 +667,22 @@ PrefabInstance:
     - target: {fileID: 7883769679132908701, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.017161041
+      value: -0.01716119
       objectReference: {fileID: 0}
     - target: {fileID: 7883769679132908701, guid: bce69fbb810ec4a468c485cab8940d09,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.0011107922
+      value: 0.0011108518
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883769679132908701, guid: bce69fbb810ec4a468c485cab8940d09,
+        type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.29839447
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883769679132908701, guid: bce69fbb810ec4a468c485cab8940d09,
+        type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.9822227
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -4837347895082776640, guid: bce69fbb810ec4a468c485cab8940d09,
