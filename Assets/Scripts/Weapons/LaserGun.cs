@@ -15,7 +15,7 @@ public class LaserGun : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, transform.up, Color.red);
+        
     }
 
 }
