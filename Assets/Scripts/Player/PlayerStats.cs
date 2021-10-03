@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour, IDamageable
 {
     [SerializeField] private int maxHealth = 1;
+    [SerializeField] private float impulseWhenDamaged = 1.0f;
     [SerializeField] private UnityEvent playerDieEvent;
     [SerializeField] private UnityEvent<int, int> healthUpdated;
 
@@ -46,5 +47,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
     {
         CurrentHealth -= (int) damage;
         DamageReceived.Invoke(damage, instigator);
+        Vector2 direction = hitInformation.HitDirection;
+        direction.y = Math.Abs(direction.y);
+        CharacterMovementController character = GameMode.Singleton.PlayerCached.GetComponent<CharacterMovementController>();
+        character.ApplyForce(direction * impulseWhenDamaged);
     }
 }

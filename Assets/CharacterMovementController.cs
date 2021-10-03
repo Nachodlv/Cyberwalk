@@ -163,6 +163,7 @@ public class CharacterMovementController : MonoBehaviour
                 // mVerticalVelocity.y = mLastTickImpulse.y;
                 //Vector3 mNewImpulsePosition = transform.position + (mVerticalVelocity + mHorizontalVelocity);
                 Vector3 mNewImpulsePosition = transform.position + (mLastTickImpulse * Time.deltaTime);
+                // GameMode.Singleton.BackpackCached.MoveBoxes(mLastTickImpulse * Time.deltaTime);
                 RigidBodyComp.MovePosition(mNewImpulsePosition);
                 mLastTickImpulse = Vector3.zero;
             }
