@@ -95,19 +95,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GravityForce: 1
+  MaxFallingSpeed: 0.1
+  Deceleration: 0.1
   UseCharacterController: 0
-  GroundCheckCircleRadius: 1
-  GroundCheckDistance: 0
+  GroundCheckCircleRadius: 0.3
+  GroundCheckDistance: 0.8
+  GroundCheckUpperCircleOffset: {x: 0, y: 0}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
   JumpForce: 0.5
-  JumpMaxHeight: 5
-  LandingTimeThreshold: 0.5
+  JumpMaxHeight: 10
+  LandingTimeThreshold: 0.8
   WalkingMovementSpeed: 10
-  DebugRays: 0
+  DebugRays: 1
   CharacterControllerComp: {fileID: 0}
-  RigidBodyComp: {fileID: 0}
+  RigidBodyComp: {fileID: 7011616797478238876}
 --- !u!114 &3459160477641659884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +155,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 4444431720361370940}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -403,12 +406,12 @@ PrefabInstance:
     - target: {fileID: 4026392215106853799, guid: 768e4f46b2173104e92417d588a764eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4026392215106853799, guid: 768e4f46b2173104e92417d588a764eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6180399764701599524, guid: 768e4f46b2173104e92417d588a764eb,
         type: 3}

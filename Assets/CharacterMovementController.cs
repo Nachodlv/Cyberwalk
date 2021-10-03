@@ -95,11 +95,11 @@ public class CharacterMovementController : MonoBehaviour
     {
         // Check inputs
         mHorizontalVelocity.x = Input.GetAxisRaw("Horizontal");
-        mJumpKeyHold = Input.GetButton("Jump");
+        //mJumpKeyHold = Input.GetButton("Jump");
 
         if (!UseCharacterController)
         {
-            if (!mJumpKeyPressed)
+            if (!mJumpKeyPressed && IsCharacterGrounded)
             {
                 mJumpKeyPressed = Input.GetButtonDown("Jump");
             }
@@ -206,6 +206,7 @@ public class CharacterMovementController : MonoBehaviour
             // Gravity
             mVerticalVelocity.y -= GravityForce * Time.deltaTime;
             mVerticalVelocity.y = Mathf.Max(mVerticalVelocity.y, -MaxFallingSpeed);
+            Debug.Log(mVerticalVelocity.y);
         }
         mHorizontalVelocity *= mCurrentSpeed * Time.deltaTime;
 
