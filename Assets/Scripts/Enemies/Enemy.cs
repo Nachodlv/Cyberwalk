@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private UnityEvent enemyDestroyed;
 
     private float _currentHealth;
+    private Camera _cachedCamera;
 
     public float CurrentHealth
     {
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Awake()
     {
+        _cachedCamera = Camera.main;
         CurrentHealth = totalHealth;
     }
 
@@ -43,7 +45,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         var position = transform.position;
         float distanceToPlayer = Vector2.Distance(playerPosition, position);
-        if (distanceToPlayer > range) return;
+        if (distanceToPlayer > range || !IsInScreen()) return;
         RaycastHit2D hit = Physics2D.Raycast(position, playerPosition, Mathf.Infinity, shooter.BulletPrefab.gameObject.layer);
         if (!hit.collider || hit.collider.gameObject == playerGameObject)
         {
@@ -57,8 +59,20 @@ public class Enemy : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    public void ApplyDamage(float damage, MonoBehaviour instigator)
+    public void ApplyDamage(float damage, MonoBehaviour instigator, HitInformation hitInformation)
     {
-        CurrentHealth -= damage;
+        if (IsInScreen())
+        {
+            CurrentHealth -= damage;
+        }
+    }
+
+    private bool IsInScreen()
+    {
+        Vector3 position = transform.position;
+        Vector3 minScreenBounds = _cachedCamera.ScreenToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 maxScreenBounds = _cachedCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+        return position.x > minScreenBounds.x && position.y > minScreenBounds.y && position.x < maxScreenBounds.x &&
+               position.y < maxScreenBounds.y;
     }
 }

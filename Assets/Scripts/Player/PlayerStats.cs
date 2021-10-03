@@ -15,8 +15,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
         get => _currentHealth;
         set
         {
-            healthUpdated.Invoke(_currentHealth, value);
-            _currentHealth = value;
+            int valueToApply = Mathf.Max(0, value);
+            healthUpdated.Invoke(_currentHealth, valueToApply);
+            _currentHealth = valueToApply;
             if (_currentHealth <= 0)
             {
                 PlayerDie();
@@ -41,7 +42,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         SceneManager.LoadScene(0);
     }
 
-    public void ApplyDamage(float damage, MonoBehaviour instigator)
+    public void ApplyDamage(float damage, MonoBehaviour instigator, HitInformation hitInformation)
     {
         CurrentHealth -= (int) damage;
         DamageReceived.Invoke(damage, instigator);

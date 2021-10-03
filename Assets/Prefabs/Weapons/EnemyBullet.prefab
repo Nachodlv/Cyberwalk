@@ -72,6 +72,76 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: maxDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: middleDamage
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: maxDamageColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: maxDamageColor.r
+      value: 0.63529414
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: minDamageColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: minDamageColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: minDamageColor.r
+      value: 0.6348467
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: middleDamageColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: middleDamageColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: middleDamageColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216719026875141371, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: middleDamageColor.r
+      value: 0.63529414
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579858646148501489, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579858646148501489, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579858646148501489, guid: f25dcb8d734ceb545a57f44109e352e8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.63529414
+      objectReference: {fileID: 0}
     - target: {fileID: 8817909196483523030, guid: f25dcb8d734ceb545a57f44109e352e8,
         type: 3}
       propertyPath: m_Layer

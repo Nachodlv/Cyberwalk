@@ -42,6 +42,8 @@ public class Shooter : MonoBehaviour
         QuantityOfBullets = baseQuantityOfBullets;
         BulletScale = baseBulletScale;
         _bulletsParent = new GameObject("Bullets").transform;
+        _bulletsParent.parent = transform.parent.parent;
+        _bulletsParent.localPosition = Vector3.zero;
     }
 
     public void LookAt(Vector2 location)
@@ -74,14 +76,6 @@ public class Shooter : MonoBehaviour
             bullet.Initialize(BulletDamage, BulletBounces, BulletScale);
             bullet.Rigidbody2D.AddForce(Quaternion.Euler(eulerRotation) * shootDirection * BulletSpeed);
             _lastBulletFiredTime = now;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (_bulletsParent)
-        {
-            Destroy(_bulletsParent.gameObject);
         }
     }
 }

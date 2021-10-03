@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PickableBox : MonoBehaviour
+public class PickableBox : MonoBehaviour, IDamageable
 {
     [Header("Player interaction")]
     [SerializeField]
@@ -13,6 +13,7 @@ public class PickableBox : MonoBehaviour
     protected float OnPickedUpMaxSpeed = 1000.0f;
 
     [SerializeField] private UnityEvent onBoxDestroyedEvent;
+    [SerializeField] private float impulseWhenHit = 30.0f;
 
     // Components and player refence
     protected GameObject CachedPlayer;
@@ -159,4 +160,15 @@ public class PickableBox : MonoBehaviour
         _destroyed = true;
     }
 
+    public void ApplyDamage(float damage, MonoBehaviour instigator, HitInformation hitInformation)
+    {
+        if (hitInformation.IsAbsoluteDamage)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Rigidbody2DComponent.AddForce(hitInformation.HitDirection * impulseWhenHit);
+        }
+    }
 }

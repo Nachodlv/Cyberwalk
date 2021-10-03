@@ -10,16 +10,17 @@ class LevelPool
 {
     public ModularTerrain[] modularTerrain;
     public float minimumMeters;
+    public float percentageWalkToSpawn = 0.5f;
 }
 
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private LevelPool[] levels;
     [SerializeField] private Transform startingSpawnPoint;
-    [SerializeField] private float percentageWalkToSpawn = 0.5f;
     [SerializeField] private int maximumLevelsSpawned = 2;
 
     private ModularTerrain _currentModularTerrain;
+    private float _percentageWalkToSpawn;
     private List<GameObject> _modularTerrainsToDelete;
     private Vector2 _lastSpawnPoint;
     private LevelPool[] _levelsSorted;
@@ -39,7 +40,7 @@ public class LevelGenerator : MonoBehaviour
         Vector2 playerPosition = GameMode.Singleton.PlayerCached.transform.position;
         float metersWalked = playerPosition.x - _lastSpawnPoint.x;
         float percentageWalked = metersWalked / _currentModularTerrain.length;
-        if (percentageWalked > percentageWalkToSpawn)
+        if (percentageWalked > _percentageWalkToSpawn)
         {
             SpawnLevel();
         }
@@ -61,6 +62,7 @@ public class LevelGenerator : MonoBehaviour
         }
 
         _currentModularTerrain = levelPool.modularTerrain[randomTerrain];
+        _percentageWalkToSpawn = levelPool.percentageWalkToSpawn;
         _lastSpawnPoint += _currentModularTerrain.offset;
         _modularTerrainsToDelete.Add(Instantiate(_currentModularTerrain.terrain, _lastSpawnPoint, Quaternion.identity, _levelsParent));
     }
