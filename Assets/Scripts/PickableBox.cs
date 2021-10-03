@@ -63,7 +63,7 @@ public class PickableBox : MonoBehaviour, IDamageable
         {
             _colliders.Add(Other.gameObject);
             InBackpack = true;
-            SetupJointComponent();
+            //SetupJointComponent();
             OnRegisterToPlayer();
         }
     }
