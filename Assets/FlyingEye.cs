@@ -40,7 +40,7 @@ public class FlyingEye : MonoBehaviour
     {
         dirToPlayer = GameMode.Singleton.PlayerTransformCached.position - transform.position;
         // Face to player.
-        if (mCurrentState == EyeState.Searching || mCurrentState == EyeState.Aiming)
+        if (IsInState(EyeState.Searching) || IsInState(EyeState.Aiming))
         {
             float rotSpeed = mCurrentState == EyeState.Searching ? SearchRotationSpeed : AimRotationSpeed;
             float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
@@ -48,9 +48,13 @@ public class FlyingEye : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotSpeed * Time.deltaTime);
 
             // Move
-            if (mCurrentState == EyeState.Searching)
+            if (IsInState(EyeState.Searching))
             {
                 ProcessSearching();
+            }
+            else if(IsInState(EyeState.Aiming))
+            {
+
             }
         }
 
@@ -64,7 +68,7 @@ public class FlyingEye : MonoBehaviour
         }
         else
         {
-            transform.Translate(dirToPlayer.normalized * SearchMovementSpeed * Time.deltaTime);
+            transform.position += transform.right * Time.deltaTime * SearchMovementSpeed;
         }
     }
 
@@ -75,5 +79,10 @@ public class FlyingEye : MonoBehaviour
             mPreviusState = mCurrentState;
             mCurrentState = InState;
         }
+    }
+
+    bool IsInState(EyeState InState)
+    {
+        return mCurrentState == InState;
     }
 }
