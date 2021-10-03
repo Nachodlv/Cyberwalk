@@ -98,7 +98,7 @@ public class CharacterMovementController : MonoBehaviour
     {
         // Check inputs
         mHorizontalVelocity.x = Input.GetAxisRaw("Horizontal");
-        //mJumpKeyHold = Input.GetButton("Jump");
+        mJumpKeyHold = Input.GetButton("Jump");
 
         if (!UseCharacterController)
         {
