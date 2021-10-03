@@ -29,6 +29,8 @@ public class CharacterMovementController : MonoBehaviour
     bool mIsRigidBodyGrounded = false;
     Vector2 mGroundHitPosition = Vector2.zero;
     bool mCachedRigidBodyIsGrounded = false;
+    Vector3 mLastTickImpulse = Vector3.zero;
+    bool mWasImpulsedThisFrame = false;
 
     float mCurrentSpeed = 0;
     float mCurrentMaxHeight;
@@ -141,6 +143,27 @@ public class CharacterMovementController : MonoBehaviour
             return;
         }
 
+        if (mLastTickImpulse.magnitude > 0.005f)
+        {
+            Debug.Log(mLastTickImpulse.magnitude);
+            if (mWasImpulsedThisFrame)
+            {
+                mWasImpulsedThisFrame = false;
+                // mHorizontalVelocity.x = mLastTickImpulse.x * Time.deltaTime;
+                // mVerticalVelocity.y = mLastTickImpulse.y;
+                //Vector3 mNewImpulsePosition = transform.position + (mVerticalVelocity + mHorizontalVelocity);
+                Vector3 mNewImpulsePosition = transform.position + (mLastTickImpulse * Time.deltaTime);
+                RigidBodyComp.MovePosition(mNewImpulsePosition);
+                mLastTickImpulse = Vector3.zero;
+            }
+            else
+            {
+                // Gravity
+                mVerticalVelocity.y -= GravityForce * Time.deltaTime;
+            }
+            return;
+        }
+
         if(mHorizontalVelocity != Vector3.zero && mHorizontalVelocity.normalized != mLastMovementDirection)
         {
             mLastMovementDirection = mHorizontalVelocity.normalized;
@@ -226,4 +249,19 @@ public class CharacterMovementController : MonoBehaviour
             }
         }
     }
+
+    // With a vector of magnitude around 20 seems to work fine.
+    public void ApplyForce(Vector2 Force)
+    {
+        mLastTickImpulse = Force;
+        mWasImpulsedThisFrame = true;
+    }
+    
+    // void OnMouseDown()
+    // {
+    //     float X = 0.75f * Mathf.Sign(Random.Range(-1.0f,1.0f));
+    //     float Y = 0.75f;
+    //     ApplyForce(new Vector2(X,Y) * 20);
+    // }
+
 }
