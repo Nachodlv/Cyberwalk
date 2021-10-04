@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [Header("Events")]
     [SerializeField] private UnityEvent enemyDestroyed;
+    [SerializeField] private UnityEvent receiveDamageEvent;
 
     private float _currentHealth;
     private Camera _cachedCamera;
@@ -64,6 +65,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (IsInScreen())
         {
             CurrentHealth -= damage;
+            receiveDamageEvent.Invoke();
         }
     }
 
