@@ -55,13 +55,22 @@ public class LevelGenerator : MonoBehaviour
         }
 
         LevelPool levelPool = GetCurrentLevelPool();
-        int randomTerrain = Random.Range(0, levelPool.modularTerrain.Length);
         if (_currentModularTerrain)
         {
             _lastSpawnPoint.x += _currentModularTerrain.length;
         }
 
-        _currentModularTerrain = levelPool.modularTerrain[randomTerrain];
+        while (true)
+        {
+            int randomTerrain = Random.Range(0, levelPool.modularTerrain.Length);
+            ModularTerrain terrain = levelPool.modularTerrain[randomTerrain];
+            if (terrain != _currentModularTerrain || levelPool.modularTerrain.Length <= 1)
+            {
+                _currentModularTerrain = terrain;
+                break;
+            }
+        }
+
         _percentageWalkToSpawn = levelPool.percentageWalkToSpawn;
         _lastSpawnPoint += _currentModularTerrain.offset;
         _modularTerrainsToDelete.Add(Instantiate(_currentModularTerrain.terrain, _lastSpawnPoint, Quaternion.identity, _levelsParent));
