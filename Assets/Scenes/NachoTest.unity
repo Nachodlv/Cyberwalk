@@ -1588,6 +1588,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5066862977309330761, guid: f72e5b088ccbd1e41a7798e781adaaad,
+        type: 3}
+      propertyPath: levels.Array.data[2].minimumMeters
+      value: 400.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5066862977309330763, guid: f72e5b088ccbd1e41a7798e781adaaad,
         type: 3}
       propertyPath: m_Name
@@ -3747,16 +3752,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2638893302610365869, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.6306717
-      objectReference: {fileID: 0}
-    - target: {fileID: 2638893302610365869, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.425
-      objectReference: {fileID: 0}
     - target: {fileID: 3022712058259334557, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
       propertyPath: m_RootOrder
@@ -3814,16 +3809,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
-      propertyPath: playerDieEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: playerDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
       propertyPath: healthUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 196044864}
@@ -3832,50 +3817,10 @@ PrefabInstance:
       propertyPath: playerDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 556824881}
-    - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: playerDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: playerDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: playerDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: playerDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459160477641659884, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: playerDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4444431720361370940, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
         type: 3}
       propertyPath: m_Name
       value: PlayerV3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5665184416093175574, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 70.42281
-      objectReference: {fileID: 0}
-    - target: {fileID: 5665184416093175574, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0005
-      objectReference: {fileID: 0}
-    - target: {fileID: 5665184416093175574, guid: 3a36a2f920ce5cb439bfa1ce2238e95c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a36a2f920ce5cb439bfa1ce2238e95c, type: 3}

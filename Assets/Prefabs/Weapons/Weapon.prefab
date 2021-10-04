@@ -136,6 +136,10 @@ MonoBehaviour:
   baseSpeed: 1000
   baseDamage: 5
   baseFireRate: 0.5
+  baseQuantityOfBullets: 1
+  degreesPerBullet: -10
+  baseBulletBounces: 0
+  baseBulletScale: 1
 --- !u!1 &6901419101264957019
 GameObject:
   m_ObjectHideFlags: 0
