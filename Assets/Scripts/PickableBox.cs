@@ -15,6 +15,9 @@ public class PickableBox : MonoBehaviour, IDamageable
     [SerializeField] private UnityEvent onBoxDestroyedEvent;
     [SerializeField] private float impulseWhenHit = 30.0f;
 
+    [SerializeField] private UnityEvent boxGrabbed;
+    [SerializeField] private UnityEvent boxConnected;
+
     // Components and player refence
     protected GameObject CachedPlayer;
     protected Backpack CachedBackpack;
@@ -126,6 +129,7 @@ public class PickableBox : MonoBehaviour, IDamageable
         // Only allow dragging if we are not in the backpack.
         if (!_destroyed && !InBackpack)
         {
+            boxGrabbed.Invoke();
             Vector2 MouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 SmootedNewPosition = Vector2.SmoothDamp(transform.position, MouseScreenPosition, ref OnPickedUpVelocity, OnPickedUpSmoothTime, OnPickedUpMaxSpeed);
             Rigidbody2DComponent.MovePosition(SmootedNewPosition);
@@ -138,6 +142,7 @@ public class PickableBox : MonoBehaviour, IDamageable
         {
             Debug.LogError($"Not in backpack!");
         }
+        boxGrabbed.Invoke();
         Backpack backpack = CachedPlayer.GetComponentInChildren<Backpack>();
         backpack.PickableBoxes.Add(this);
     }

@@ -30,6 +30,8 @@ public class CharacterMovementController : MonoBehaviour
     [Header("Debug")]
     public bool DebugRays;
 
+    public UnityEvent characterLand;
+
     // RigidBody variables:
     bool mIsRigidBodyGrounded = false;
     Vector2 mGroundHitPosition = Vector2.zero;
@@ -292,6 +294,12 @@ public class CharacterMovementController : MonoBehaviour
         }
 
         bool isColliding = hit2D.collider != null;
+
+        if (!CachedRigidBodyIsGrounded && isColliding)
+        {
+            characterLand.Invoke();
+        }
+
         CachedRigidBodyIsGrounded = isColliding;
 
         if (isColliding)

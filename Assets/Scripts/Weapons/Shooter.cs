@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Shooter : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float degreesPerBullet = 20.0f;
     [SerializeField] private int baseBulletBounces = 0;
     [SerializeField] private float baseBulletScale = 1.0f;
+
+    [SerializeField] private UnityEvent bulletShoot;
 
     private Transform _bulletsParent;
     private float _lastBulletFiredTime;
@@ -77,5 +80,7 @@ public class Shooter : MonoBehaviour
             bullet.Rigidbody2D.AddForce(Quaternion.Euler(eulerRotation) * shootDirection * BulletSpeed);
             _lastBulletFiredTime = now;
         }
+
+        bulletShoot.Invoke();
     }
 }

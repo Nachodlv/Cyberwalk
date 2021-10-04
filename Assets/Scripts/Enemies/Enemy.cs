@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [Header("Events")]
     [SerializeField] private UnityEvent enemyDestroyed;
     [SerializeField] private UnityEvent receiveDamageEvent;
+    [SerializeField] private UnityEvent dieEvent;
 
     private float _currentHealth;
     private Camera _cachedCamera;
@@ -56,6 +57,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void EnemyDestroyed()
     {
+        dieEvent.Invoke();
         enemyDestroyed.Invoke();
         Destroy(gameObject);
     }

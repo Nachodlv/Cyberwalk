@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField] private float impulseWhenDamaged = 1.0f;
     [SerializeField] private UnityEvent playerDieEvent;
     [SerializeField] private UnityEvent<int, int> healthUpdated;
+    [SerializeField] private UnityEvent hitReceived;
 
     public int CurrentHealth
     {
@@ -44,6 +45,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public void ApplyDamage(float damage, MonoBehaviour instigator, HitInformation hitInformation)
     {
+        hitReceived.Invoke();
         CurrentHealth -= (int) damage;
         DamageReceived.Invoke(damage, instigator);
         Vector2 direction = hitInformation.HitDirection;
