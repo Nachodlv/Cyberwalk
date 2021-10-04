@@ -55,7 +55,6 @@ public class Backpack : MonoBehaviour
         if (_forceFramesRemaining > 0)
         {
             _forceFramesRemaining--;
-            Debug.Log($"Applying force: {_force}");
             foreach (PickableBox box in PickableBoxes)
             {
                 Vector2 position = box.Rigidbody2DComponent.position;
@@ -78,16 +77,18 @@ public class Backpack : MonoBehaviour
         }
     }
 
-    public void MoveBoxes(Vector2 movement)
+    public void MoveBoxes(float x, float y)
     {
-        _force = movement * _extraForce;
         _forceFramesRemaining = _forceMaxFrames;
         Debug.Log("Moving boxes");
-        Debug.Log($"Applying force: {_force}");
+        Debug.Log($"Applying force x: {x}, y: {y}");
         foreach (PickableBox box in PickableBoxes)
         {
-            Vector2 position = box.Rigidbody2DComponent.position;
-            box.Rigidbody2DComponent.MovePosition(position + _force);
+            Vector3 position = box.Rigidbody2DComponent.position;
+            position.x += x;
+            position.y += y;
+            Debug.Log($"Position: {position}");
+            box.Rigidbody2DComponent.MovePosition(position);
         }
     }
 }

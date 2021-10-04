@@ -61,6 +61,8 @@ public class CharacterMovementController : MonoBehaviour
     BoxCollider2D mBoxColliderComp;
     //Transform mRender;
 
+    private Backpack _backpack;
+
     bool IsOverMaxHeight
     {
         get
@@ -89,6 +91,7 @@ public class CharacterMovementController : MonoBehaviour
 
     void Start()
     {
+        _backpack = GetComponentInChildren<Backpack>();
         if (UseCharacterController)
         {
             CharacterControllerComp = GetComponent<CharacterController>();
@@ -244,8 +247,8 @@ public class CharacterMovementController : MonoBehaviour
             if (Mathf.Abs(yDifference) > 0.1f)
             {
                 Vector2 vector = new Vector2(0.0f, yDifference);
-                Debug.Log($"Prepare to move boxes with force: {yDifference}. Vector: {vector}");
-                GameMode.Singleton.BackpackCached.MoveBoxes(vector);
+                Debug.Log($"Prepare to move boxes with force: {yDifference}");
+               _backpack.MoveBoxes(0, yDifference);
             }
         }
 
