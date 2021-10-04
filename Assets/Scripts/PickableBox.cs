@@ -169,6 +169,11 @@ public class PickableBox : MonoBehaviour, IDamageable
         else
         {
             Rigidbody2DComponent.AddForce(hitInformation.HitDirection * impulseWhenHit);
+            if (!InBackpack)
+            {
+                Debug.Log($"BoxHit {damage}");
+                DestroyBox();
+            }
         }
     }
 }

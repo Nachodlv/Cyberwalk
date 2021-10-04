@@ -37,7 +37,8 @@ public class FlyingEye : MonoBehaviour, IDamageable
 
     [Header("Laser")]
     public float LaserThickness = 2.0f;
-    public float LaserDamage = 1.0f;
+    public int LaserDamagePerTick = 1;
+    public float LaserDamageTick = 0.5f;
     public bool PushPlayer = false;
     public LayerMask DamageCheckLayer;
 
@@ -54,6 +55,7 @@ public class FlyingEye : MonoBehaviour, IDamageable
     float mAimingElapsedTime = 0.0f;
     float mFiringElapsedTime = 0.0f;
     float mCooldownElapsedTime = 0.0f;
+    float mDamageTickElapsedTime = 0.0f;
 
     float _currentHealth;
 
@@ -82,6 +84,7 @@ public class FlyingEye : MonoBehaviour, IDamageable
         _cachedCamera = Camera.main;
         leftUpperMargin = _cachedCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)) * -OffScreenActivationFactor;
         rightBottomMargin = _cachedCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)) * OffScreenActivationFactor;
+        mDamageTickElapsedTime = LaserDamageTick;
     }
 
     void Start()
@@ -170,6 +173,15 @@ public class FlyingEye : MonoBehaviour, IDamageable
 
     void LaserTrace()
     {
+        mDamageTickElapsedTime += Time.deltaTime;
+
+        if (mDamageTickElapsedTime < LaserDamageTick)
+        {
+            return;
+        }
+
+        mDamageTickElapsedTime = 0.0f;
+
         RaycastHit2D[] hit2D = Physics2D.CircleCastAll(transform.position, LaserThickness, transform.right, FireDistance * 2.0f, DamageCheckLayer);
 
         foreach (RaycastHit2D hit in hit2D)
@@ -180,7 +192,7 @@ public class FlyingEye : MonoBehaviour, IDamageable
                 if (damageable != null)
                 {
                     Vector3 PushVelocity = PushPlayer ? transform.right : Vector3.zero;
-                    damageable.ApplyDamage(LaserDamage * Time.deltaTime, this, new HitInformation(PushVelocity));
+                    damageable.ApplyDamage(LaserDamagePerTick, this, new HitInformation(PushVelocity));
                 }
             }
         }
@@ -215,6 +227,7 @@ public class FlyingEye : MonoBehaviour, IDamageable
             case EyeState.Firing:
             {
                 GetComponent<LineRenderer>().sharedMaterial = LaserMaterial;
+                mDamageTickElapsedTime = LaserDamageTick;
                 mFiringElapsedTime = 0.0f;
                 break;
             }
