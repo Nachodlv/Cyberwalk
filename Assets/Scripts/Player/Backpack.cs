@@ -10,6 +10,7 @@ public class Backpack : MonoBehaviour
     public Transform AttachPoint;
     public List<PickableBox> PickableBoxes { get; set; }
 
+    private int _forceMaxFrames = 1;
     private int _forceFramesRemaining;
     private Vector2 _force;
 
@@ -18,6 +19,21 @@ public class Backpack : MonoBehaviour
         PickableBoxes = new List<PickableBox>();
         PlayerStats playerStats = GetComponentInParent<PlayerStats>();
         playerStats.DamageReceived.AddListener(DamageRecevied);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            _forceMaxFrames--;
+            Debug.Log($"Ticks: {_forceMaxFrames}");
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            _forceMaxFrames++;
+            Debug.Log($"Ticks: {_forceMaxFrames}");
+        }
     }
 
 
@@ -51,7 +67,7 @@ public class Backpack : MonoBehaviour
     public void MoveBoxes(Vector2 movement)
     {
         _force = movement;
-        _forceFramesRemaining = 1;
+        _forceFramesRemaining = _forceMaxFrames;
         Debug.Log("Moving boxes");
         foreach (PickableBox box in PickableBoxes)
         {
