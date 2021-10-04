@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f16909f65674520bfbe95b5e9f8d9d2, type: 3}
   m_Name: Modular Test Terrain 5
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   terrain: {fileID: 678389508429784469, guid: 2d676c6ad3676ea4084c24512fc72ce1, type: 3}
   offset: {x: 0, y: 0}
-  length: 97.1
+  length: 95.97
