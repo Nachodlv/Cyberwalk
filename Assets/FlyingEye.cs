@@ -16,14 +16,14 @@ public class FlyingEye : MonoBehaviour, IDamageable
 {
     [Header("References")]
     public GameObject EyeLight;
+    public Material AimingMaterial;
+    public Material LaserMaterial;
 
     [Header("Stats")]
     public float TotalHealth = 5.0f;
 
     [Header("Times")]
-    public float SearchTime = 0.5f;
     public float LockTime = 0.5f;
-    public float LoadingTime = 0.5f;
     public float LaserDuration = 0.5f;
 
     [Header("Distances")]
@@ -38,6 +38,7 @@ public class FlyingEye : MonoBehaviour, IDamageable
     [Header("Laser")]
     public float LaserThickness = 2.0f;
     public float LaserDamage = 1.0f;
+    public bool PushPlayer = false;
     public LayerMask DamageCheckLayer;
 
     [Header("Events")]
@@ -177,8 +178,9 @@ public class FlyingEye : MonoBehaviour, IDamageable
             {
                 IDamageable damageable = hit.collider.gameObject.GetComponent<IDamageable>();
                 if (damageable != null)
-                {    
-                    damageable.ApplyDamage(LaserDamage, this, new HitInformation(transform.right));
+                {
+                    Vector3 PushVelocity = PushPlayer ? transform.right : Vector3.zero;
+                    damageable.ApplyDamage(LaserDamage * Time.deltaTime, this, new HitInformation(PushVelocity));
                 }
             }
         }
@@ -205,12 +207,14 @@ public class FlyingEye : MonoBehaviour, IDamageable
         {
             case EyeState.Aiming:
             {
+                GetComponent<LineRenderer>().enabled = true;
+                GetComponent<LineRenderer>().sharedMaterial = AimingMaterial;
                 mAimingElapsedTime = 0.0f;
                 break;
             }
             case EyeState.Firing:
             {
-                GetComponent<LineRenderer>().enabled = true;
+                GetComponent<LineRenderer>().sharedMaterial = LaserMaterial;
                 mFiringElapsedTime = 0.0f;
                 break;
             }

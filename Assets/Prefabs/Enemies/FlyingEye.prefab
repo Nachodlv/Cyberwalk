@@ -64,6 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EyeLight: {fileID: 3041313539583719322}
+  AimingMaterial: {fileID: 2100000, guid: 7db4ca76b6165a4438ff6761b3f8d1ac, type: 2}
+  LaserMaterial: {fileID: 2100000, guid: 3d144741d6deed948901a549ebda1de9, type: 2}
   TotalHealth: 5
   SearchTime: 0.5
   LockTime: 1
@@ -146,8 +148,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
-      key1: {r: 1, g: 0, b: 0, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
