@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f672f05f50de4f48998cb7d6ecb85372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundingBox: {x: 2.7, y: 2.7}
+  boundingBox: {x: 0.69, y: 2.7}
   destroyWhenFall: 1
   restrictX: 1
 --- !u!95 &757740325
