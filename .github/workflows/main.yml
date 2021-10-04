@@ -40,7 +40,7 @@ jobs:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
           buildsPath: build
-          buildName: $PROJECT_NAME-${{ matrix.targetPlatform }}
+          buildName: ${{PROJECT_NAME}}-${{ matrix.targetPlatform }}
 
       # Output
       - uses: actions/upload-artifact@v1
