@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  impulseWhenDamaged: 0
+  impulseWhenDamaged: 20
   playerDieEvent:
     m_PersistentCalls:
       m_Calls: []
