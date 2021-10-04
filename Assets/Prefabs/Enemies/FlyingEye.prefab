@@ -68,16 +68,17 @@ MonoBehaviour:
   LaserMaterial: {fileID: 2100000, guid: 3d144741d6deed948901a549ebda1de9, type: 2}
   TotalHealth: 5
   SearchTime: 0.5
-  LockTime: 1
+  LockTime: 2
   LoadingTime: 0.5
-  LaserDuration: 0.5
+  LaserDuration: 0.3
   OffScreenActivationFactor: 0.33
-  FireDistance: 15
-  SearchMovementSpeed: 10
+  FireDistance: 200
+  SearchMovementSpeed: 6
   SearchRotationSpeed: 2
-  AimRotationSpeed: 5
+  AimRotationSpeed: 3
   LaserThickness: 1
   LaserDamage: 1
+  PushPlayer: 0
   DamageCheckLayer:
     serializedVersion: 2
     m_Bits: 512
