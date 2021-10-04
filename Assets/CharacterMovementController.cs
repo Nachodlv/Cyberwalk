@@ -241,7 +241,7 @@ public class CharacterMovementController : MonoBehaviour
             var positionY = transform.position.y;
             mFinalPosition.y = mGroundHitPosition.y + mBoxColliderComp.bounds.extents.y;
             float yDifference = mFinalPosition.y - positionY;
-            if (Mathf.Abs(yDifference) > 0.2f)
+            if (Mathf.Abs(yDifference) > 0.1f)
             {
                 GameMode.Singleton.BackpackCached.MoveBoxes(new Vector2(0, yDifference));
             }
