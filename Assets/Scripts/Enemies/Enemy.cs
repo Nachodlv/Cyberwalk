@@ -67,7 +67,10 @@ public class Enemy : MonoBehaviour, IDamageable
         if (IsInScreen())
         {
             CurrentHealth -= damage;
-            receiveDamageEvent.Invoke();
+            if (!hitInformation.IsAbsoluteDamage)
+            {
+                receiveDamageEvent.Invoke();
+            }
         }
     }
 

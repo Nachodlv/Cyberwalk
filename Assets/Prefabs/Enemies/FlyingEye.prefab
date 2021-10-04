@@ -70,7 +70,7 @@ MonoBehaviour:
   LockTime: 2
   LaserDuration: 0.3
   OffScreenActivationFactor: 0.33
-  FireDistance: 100
+  FireDistance: 30
   SearchMovementSpeed: 6
   SearchRotationSpeed: 3
   AimRotationSpeed: 1

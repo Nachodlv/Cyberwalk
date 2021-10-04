@@ -108,7 +108,7 @@ public class FlyingEye : MonoBehaviour, IDamageable
             if (IsInState(EyeState.Searching))
             {
                 // Check if in range.
-                if (dirToPlayer.sqrMagnitude <= FireDistance * FireDistance)
+                if (dirToPlayer.sqrMagnitude <= FireDistance * FireDistance && IsInActivationRange())
                 {
                     SetState(EyeState.Aiming);
                 }

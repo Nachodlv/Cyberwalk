@@ -31,6 +31,7 @@ public class PickableBox : MonoBehaviour, IDamageable
     private bool InBackpack { get; set; }
 
     private BoxCollider2D _boxCollider2D;
+    private bool _grabbed;
     public BoxCollider2D BoxCollider2D => _boxCollider2D ? _boxCollider2D : _boxCollider2D = GetComponent<BoxCollider2D>();
 
     void Awake()
@@ -129,10 +130,17 @@ public class PickableBox : MonoBehaviour, IDamageable
         // Only allow dragging if we are not in the backpack.
         if (!_destroyed && !InBackpack)
         {
-            boxGrabbed.Invoke();
             Vector2 MouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 SmootedNewPosition = Vector2.SmoothDamp(transform.position, MouseScreenPosition, ref OnPickedUpVelocity, OnPickedUpSmoothTime, OnPickedUpMaxSpeed);
             Rigidbody2DComponent.MovePosition(SmootedNewPosition);
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (!_destroyed && !InBackpack)
+        {
+            boxGrabbed.Invoke();
         }
     }
 
@@ -142,7 +150,7 @@ public class PickableBox : MonoBehaviour, IDamageable
         {
             Debug.LogError($"Not in backpack!");
         }
-        boxGrabbed.Invoke();
+        boxConnected.Invoke();
         Backpack backpack = CachedPlayer.GetComponentInChildren<Backpack>();
         backpack.PickableBoxes.Add(this);
     }
