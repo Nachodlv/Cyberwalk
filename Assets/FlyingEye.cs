@@ -40,6 +40,7 @@ public class FlyingEye : MonoBehaviour, IDamageable
     [Header("Laser")]
     public float LaserThickness = 2.0f;
     public float LaserDamage = 1.0f;
+    public bool PushPlayer = false;
     public LayerMask DamageCheckLayer;
 
     [Header("Events")]
@@ -179,8 +180,9 @@ public class FlyingEye : MonoBehaviour, IDamageable
             {
                 IDamageable damageable = hit.collider.gameObject.GetComponent<IDamageable>();
                 if (damageable != null)
-                {    
-                    damageable.ApplyDamage(LaserDamage, this, new HitInformation(transform.right));
+                {
+                    Vector3 PushVelocity = PushPlayer ? transform.right : Vector3.zero;
+                    damageable.ApplyDamage(LaserDamage, this, new HitInformation(PushVelocity));
                 }
             }
         }

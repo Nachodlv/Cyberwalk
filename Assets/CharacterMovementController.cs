@@ -299,6 +299,10 @@ public class CharacterMovementController : MonoBehaviour
     // With a vector of magnitude around 20 seems to work fine.
     public void ApplyForce(Vector2 Force)
     {
+        if (Force.magnitude == 0)
+        {
+            return;
+        }
         mLastTickImpulse = Force;
         mWasImpulsedThisFrame = true;
     }
