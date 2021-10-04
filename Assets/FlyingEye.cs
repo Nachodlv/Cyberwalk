@@ -23,9 +23,7 @@ public class FlyingEye : MonoBehaviour, IDamageable
     public float TotalHealth = 5.0f;
 
     [Header("Times")]
-    public float SearchTime = 0.5f;
     public float LockTime = 0.5f;
-    public float LoadingTime = 0.5f;
     public float LaserDuration = 0.5f;
 
     [Header("Distances")]
@@ -182,7 +180,7 @@ public class FlyingEye : MonoBehaviour, IDamageable
                 if (damageable != null)
                 {
                     Vector3 PushVelocity = PushPlayer ? transform.right : Vector3.zero;
-                    damageable.ApplyDamage(LaserDamage, this, new HitInformation(PushVelocity));
+                    damageable.ApplyDamage(LaserDamage * Time.deltaTime, this, new HitInformation(PushVelocity));
                 }
             }
         }
