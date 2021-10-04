@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 8350408738074803951}
   - component: {fileID: 8350408738074803952}
   - component: {fileID: 8350408738074803953}
+  - component: {fileID: 619851662423039518}
   m_Layer: 12
   m_Name: Enemy
   m_TagString: Untagged
@@ -224,6 +225,21 @@ MonoBehaviour:
   enemyDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  receiveDamageEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 619851662423039518}
+        m_TargetAssemblyTypeName: FlickerSprite, Assembly-CSharp
+        m_MethodName: StartFlickering
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &8350408738074803953
 Rigidbody2D:
   serializedVersion: 4
@@ -245,6 +261,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &619851662423039518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350408738074803949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c319dbcf55341379bce20b515f6c160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8350408737762024643}
+  flickerDuration: 0.1
+  flickerSpeed: 50
+  flickerColor: {r: 0.5, g: 0, b: 0, a: 1}
 --- !u!1001 &8350408738995633218
 PrefabInstance:
   m_ObjectHideFlags: 0
