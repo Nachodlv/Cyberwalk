@@ -243,7 +243,9 @@ public class CharacterMovementController : MonoBehaviour
             float yDifference = mFinalPosition.y - positionY;
             if (Mathf.Abs(yDifference) > 0.1f)
             {
-                GameMode.Singleton.BackpackCached.MoveBoxes(new Vector2(0, yDifference));
+                Vector2 vector = new Vector2(0.0f, yDifference);
+                Debug.Log($"Prepare to move boxes with force: {yDifference}. Vector: {vector}");
+                GameMode.Singleton.BackpackCached.MoveBoxes(vector);
             }
         }
 
