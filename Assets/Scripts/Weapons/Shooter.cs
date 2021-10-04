@@ -63,7 +63,7 @@ public class Shooter : MonoBehaviour
             return;
         }
 
-        Vector2 shootDirection = (_shootLocation - (Vector2) transform.position).normalized;
+        Vector2 shootDirection = (_shootLocation - (Vector2) shootingPoint.position).normalized;
 
         for (int i = 0; i < QuantityOfBullets; i++)
         {

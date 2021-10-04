@@ -49,6 +49,9 @@ public class CharacterMovementController : MonoBehaviour
     Vector3 mVerticalVelocity;
     Vector3 mLastMovementDirection;
 
+    public bool CollisionLeft { get; set; }
+    public bool CollisionRight { get; set; }
+
     [HideInInspector]
     public CharacterController CharacterControllerComp;
     public Rigidbody2D RigidBodyComp;
@@ -213,6 +216,10 @@ public class CharacterMovementController : MonoBehaviour
         }
         mHorizontalVelocity *= mCurrentSpeed * Time.deltaTime;
 
+       ClampVelocity();
+       CollisionLeft = false;
+       CollisionRight = false;
+
         Vector3 mFinalPosition = transform.position + (mVerticalVelocity + mHorizontalVelocity);
 
         if (IsCharacterGrounded && Math.Abs(mVerticalVelocity.y) < 0.001f)
@@ -225,7 +232,22 @@ public class CharacterMovementController : MonoBehaviour
                 GameMode.Singleton.BackpackCached.MoveBoxes(new Vector2(0, yDifference));
             }
         }
+
+
         RigidBodyComp.MovePosition(mFinalPosition);
+    }
+
+    public void ClampVelocity()
+    {
+        if (CollisionLeft)
+        {
+            mHorizontalVelocity.x = Mathf.Max(0.0f, mHorizontalVelocity.x);
+        }
+
+        if (CollisionRight)
+        {
+            mHorizontalVelocity.x = Mathf.Min(0.0f, mHorizontalVelocity.x);
+        }
     }
 
     void Jump()
