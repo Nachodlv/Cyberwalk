@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5066862977309330763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5066862977309330760}
+  - component: {fileID: 5066862977309330761}
+  m_Layer: 0
+  m_Name: LevelGenrator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5066862977309330760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5066862977309330763}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.47, y: -2.44, z: -88.64744}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5066862977309330761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5066862977309330763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5ef39095884638ac9cacb931910c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels:
+  - modularTerrain:
+    - {fileID: 11400000, guid: 8336162e8d133234cbdc0547f9d2087b, type: 2}
+    minimumMeters: -1
+    percentageWalkToSpawn: 0.2
+  - modularTerrain:
+    - {fileID: 11400000, guid: cb1679e286623fd47a5aa33aa9e82a4d, type: 2}
+    - {fileID: 11400000, guid: 4986e72cb8ae9e548a1413e27690fee9, type: 2}
+    - {fileID: 11400000, guid: d12184dc24db13944ad75fa73445531d, type: 2}
+    - {fileID: 11400000, guid: b6d3929a85aa366478e9aa05c6fb14d3, type: 2}
+    - {fileID: 11400000, guid: 374e1f6069d22a747a76952d6e8ebde1, type: 2}
+    - {fileID: 11400000, guid: 1db5416742308fd46812af21349b9c6f, type: 2}
+    - {fileID: 11400000, guid: f91957c26d5b9ea4497516715a9a5c49, type: 2}
+    minimumMeters: 1
+    percentageWalkToSpawn: 0.5
+  - modularTerrain:
+    - {fileID: 11400000, guid: 88d6fbc3848018949b174577023a0cd4, type: 2}
+    - {fileID: 11400000, guid: 93400db832a110b4fa350e6d6d68d1c8, type: 2}
+    - {fileID: 11400000, guid: 293c76aceb18a1444acbb5e739d059d7, type: 2}
+    - {fileID: 11400000, guid: c4e5f8a00a9d71e42809d70d51d79ec3, type: 2}
+    - {fileID: 11400000, guid: 327181f56935e7f44990472a3470bba2, type: 2}
+    - {fileID: 11400000, guid: bfaa2340dba240549b95a20e98f8711d, type: 2}
+    - {fileID: 11400000, guid: f898ae8ef559f944ab0578fd7c817a53, type: 2}
+    minimumMeters: 10
+    percentageWalkToSpawn: 0.5
+  startingSpawnPoint: {fileID: 5066862977309330760}
+  maximumLevelsSpawned: 2
