@@ -37,7 +37,7 @@ public class ScreenBound : MonoBehaviour
             {
                 HitInformation hitInformation = new HitInformation();
                 hitInformation.IsAbsoluteDamage = true;
-                _damageable.ApplyDamage(Mathf.Infinity, this, hitInformation);
+                _damageable.ApplyDamage(999999, this, hitInformation);
             }
             else
             {
