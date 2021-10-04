@@ -12,6 +12,8 @@ public class PlayerAnimation : MonoBehaviour
 
     private Vector2 _previousPosition = Vector2.zero;
     private bool _inAir;
+    private float _fixGroundTime = 0.5f;
+    private float _jumpTime;
 
     private void Awake()
     {
@@ -20,17 +22,27 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        if (!controller.CachedRigidBodyIsGrounded)
+        float Now = Time.time;
+        if (Now - _jumpTime > _fixGroundTime)
         {
-            _inAir = true;
+            animator.SetBool(Ground, controller.CachedRigidBodyIsGrounded);
+        }
+        else
+        {
             animator.SetBool(Ground, false);
         }
 
-        if (_inAir && controller.CachedRigidBodyIsGrounded)
-        {
-            _inAir = false;
-            animator.SetBool(Ground, true);
-        }
+        // if (!controller.CachedRigidBodyIsGrounded)
+        // {
+        //     _inAir = true;
+        //     animator.SetBool(Ground, false);
+        // }
+        //
+        // if (_inAir && controller.CachedRigidBodyIsGrounded)
+        // {
+        //     _inAir = false;
+        //     animator.SetBool(Ground, true);
+        // }
 
         Vector2 currentPosition = controller.RigidBodyComp.position;
         if (_previousPosition != Vector2.zero)
@@ -58,6 +70,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void CharacterJump()
     {
+        _jumpTime = Time.time;
         animator.SetBool(Ground, false);
     }
 }
