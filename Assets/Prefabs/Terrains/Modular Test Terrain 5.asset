@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrain: {fileID: 678389508429784469, guid: 2d676c6ad3676ea4084c24512fc72ce1, type: 3}
   offset: {x: 0, y: 0}
-  length: 65.2
+  length: 95.97
