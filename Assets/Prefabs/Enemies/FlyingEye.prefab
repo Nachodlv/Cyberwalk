@@ -64,6 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EyeLight: {fileID: 3041313539583719322}
+  AimingMaterial: {fileID: 0}
+  LaserMaterial: {fileID: 0}
   TotalHealth: 5
   SearchTime: 0.5
   LockTime: 1

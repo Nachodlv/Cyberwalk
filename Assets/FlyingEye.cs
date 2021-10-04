@@ -16,6 +16,8 @@ public class FlyingEye : MonoBehaviour, IDamageable
 {
     [Header("References")]
     public GameObject EyeLight;
+    public Material AimingMaterial;
+    public Material LaserMaterial;
 
     [Header("Stats")]
     public float TotalHealth = 5.0f;
@@ -205,12 +207,14 @@ public class FlyingEye : MonoBehaviour, IDamageable
         {
             case EyeState.Aiming:
             {
+                GetComponent<LineRenderer>().enabled = true;
+                GetComponent<LineRenderer>().sharedMaterial = AimingMaterial;
                 mAimingElapsedTime = 0.0f;
                 break;
             }
             case EyeState.Firing:
             {
-                GetComponent<LineRenderer>().enabled = true;
+                GetComponent<LineRenderer>().sharedMaterial = LaserMaterial;
                 mFiringElapsedTime = 0.0f;
                 break;
             }
