@@ -22,7 +22,7 @@ public class CharacterMovementController : MonoBehaviour
     [Header("Jump Settings")]
     public float JumpForce = 5.0f;
     public float JumpMaxHeight = 5.0f;
-    public float LandingTimeThreshold = 1.0f;
+    public float CoyoteTimeThreshold = 0.1f;
 
     [Header("Movement Settings")]
     public float WalkingMovementSpeed = 1.0f;
@@ -41,9 +41,12 @@ public class CharacterMovementController : MonoBehaviour
 
     float mCurrentSpeed = 0;
     float mCurrentMaxHeight;
+    float mLastTimeInGround = 0.0f;
 
     bool mJumpKeyPressed = false;
     bool mJumpKeyHold = false;
+    bool mCoyoteJumpIsPosible = false;
+    bool bCoyoteJumpWasConsumed = false;
     [HideInInspector]
     public Vector3 mHorizontalVelocity = Vector3.forward;
     Vector3 mVerticalVelocity;
@@ -106,7 +109,8 @@ public class CharacterMovementController : MonoBehaviour
 
         if (!UseCharacterController)
         {
-            if (!mJumpKeyPressed && IsCharacterGrounded)
+            mCoyoteJumpIsPosible = !bCoyoteJumpWasConsumed && Time.time - mLastTimeInGround <= CoyoteTimeThreshold;
+            if (!mJumpKeyPressed)// && (IsCharacterGrounded || mCanCoyoteJump))
             {
                 mJumpKeyPressed = Input.GetButtonDown("Jump");
             }
@@ -197,23 +201,33 @@ public class CharacterMovementController : MonoBehaviour
 
             if(mJumpKeyPressed)
             {
-                mJumpKeyPressed = false;
+                //mJumpKeyPressed = false;
                 Jump();
             }
         }
         else
         {
-            // Keep the jump velocity if spacebar is hold.
-            if(IsOverMaxHeight || (IsGoingUp && !mJumpKeyHold))
+            if (mCoyoteJumpIsPosible && mJumpKeyPressed)
             {
-                //mVerticalVelocity.y = 0;
-                mVerticalVelocity.y -= GravityForce * Time.deltaTime * Deceleration;
+                //mJumpKeyPressed = false;
+                Jump();
             }
+            else
+            {
+                //mJumpKeyPressed = false;
+                // Keep the jump velocity if spacebar is hold.
+                if(IsOverMaxHeight || (IsGoingUp && !mJumpKeyHold))
+                {
+                    //mVerticalVelocity.y = 0;
+                    mVerticalVelocity.y -= GravityForce * Time.deltaTime * Deceleration;
+                }
 
-            // Gravity
-            mVerticalVelocity.y -= GravityForce * Time.deltaTime;
-            mVerticalVelocity.y = Mathf.Max(mVerticalVelocity.y, -MaxFallingSpeed);
+                // Gravity
+                mVerticalVelocity.y -= GravityForce * Time.deltaTime;
+                mVerticalVelocity.y = Mathf.Max(mVerticalVelocity.y, -MaxFallingSpeed);
+            }
         }
+        mJumpKeyPressed = false;
         mHorizontalVelocity *= mCurrentSpeed * Time.deltaTime;
 
        ClampVelocity();
@@ -253,6 +267,7 @@ public class CharacterMovementController : MonoBehaviour
     void Jump()
     {
         mVerticalVelocity.y = JumpForce;
+        bCoyoteJumpWasConsumed = true;
         OnCharacterJump.Invoke();
     }
 
@@ -276,6 +291,8 @@ public class CharacterMovementController : MonoBehaviour
 
         if (isColliding)
         {
+            bCoyoteJumpWasConsumed = false;
+            mLastTimeInGround = Time.time;
             mGroundHitPosition = hit2D.point;
         }
 
