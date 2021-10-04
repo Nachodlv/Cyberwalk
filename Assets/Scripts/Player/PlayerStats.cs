@@ -40,7 +40,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
     private void PlayerDie()
     {
         playerDieEvent.Invoke();
-        SceneManager.LoadScene(0);
     }
 
     public void ApplyDamage(float damage, MonoBehaviour instigator, HitInformation hitInformation)

@@ -8,11 +8,16 @@ public class MetersRanText : MonoBehaviour
 
     private void Awake()
     {
-        text.text = "0 m";
+        UpdateText();
     }
 
     private void Update()
     {
-        text.text = $"{(int) GameMode.Singleton.MetersWalked} m";
+        UpdateText();
+    }
+
+    public void UpdateText()
+    {
+        text.text = $"{(int) GameMode.Singleton.MetersWalked} M";
     }
 }
