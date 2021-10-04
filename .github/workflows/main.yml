@@ -6,7 +6,7 @@ on:
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-  PROJECT_NAME: LD49
+  PROJECT_NAME: Cyberwalk2049
 
 jobs:
   builds:
